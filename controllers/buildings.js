@@ -50,14 +50,28 @@ function like(req, res, next) {
   Building
     .findById(req.params.id)
     .then(building => {
-      console.log('got this far');
-      console.log('Id is ', req.params.id);
       if (!building.likes.find(userId => userId.toString() === req.tokenUserId)) {
         building.likes.push(req.tokenUserId);
         return building.save();
       } else {
-        res.status(422).json({ message: 'Cannot vote twice'});
+        res.status(422).json({ message: 'Cannot like twice'});
         next();
+      }
+    })
+    .then(building => res.json(building))
+    .catch(next);
+}
+
+function unlike(req, res, next) {
+  console.log('I DO NOT LIKE!');
+  Building
+    .findById(req.params.id)
+    .then(building => {
+      if (!building.likes.find(userId => userId.toString() === req.tokenUserId)) {
+        res.status(422).json({ message: 'No like to remove'});
+      } else {
+        building.likes = building.likes.filter(x => x.toString() !== req.tokenUserId);
+        return building.save();
       }
     })
     .then(building => res.json(building))
@@ -71,5 +85,6 @@ module.exports = {
   create: createRoute,
   update: updateRoute,
   delete: deleteRoute,
-  like: like
+  like: like,
+  unlike: unlike
 };
