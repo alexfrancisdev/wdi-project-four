@@ -1,0 +1,32 @@
+.card-image {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 300px;
+}
+
+.hero-image {
+  @extend .card-image;
+  height: 600px;
+}
+
+.price {
+  font-size: 40px;
+  margin: 20px 0;
+}
+
+.map {
+  height: 260px;
+  margin-bottom: 22px;
+
+  &.burger-index {
+    height: 75vh;
+  }
+}
+
+.select {
+  width: 100%;
+  select {
+    width: 100%;
+  }
+}
