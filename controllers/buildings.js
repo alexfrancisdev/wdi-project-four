@@ -45,11 +45,31 @@ function deleteRoute(req, res, next) {
     .catch(next);
 }
 
+function like(req, res, next) {
+  console.log('Me like!!!');
+  Building
+    .findById(req.params.id)
+    .then(building => {
+      console.log('got this far');
+      console.log('Id is ', req.params.id);
+      if (!building.likes.find(userId => userId.toString() === req.tokenUserId)) {
+        building.votes.push('good boy');
+        return building.save();
+      } else {
+        res.status(422).json({ message: 'Cannot vote twice'});
+        next();
+      }
+    })
+    .then(building => res.json(building))
+    .catch(next);
+}
+
 
 module.exports = {
   index: indexRoute,
   show: showRoute,
   create: createRoute,
   update: updateRoute,
-  delete: deleteRoute
+  delete: deleteRoute,
+  like: like
 };
