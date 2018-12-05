@@ -11,6 +11,10 @@ router.route('/buildings/:id')
   .get(buildings.show)
   .put(buildings.update)
   .delete(buildings.delete);
+
+router.post('/buildings/:id/comments', buildings.commentCreate);
+router.delete('/buildings/:id/comments/:commentId', buildings.commentDelete);
+
 //
 // router.post('/register', auth.register);
 // router.post('/login', auth.login);

@@ -23,11 +23,11 @@ const buildingSchema = mongoose.Schema({
   },
   address: String,
   addedBy: { type: mongoose.Schema.ObjectId, ref: 'User' },
-  // comments: [{
-  //   content: String,
-  //   user: { type: mongoose.Schema.ObjectId, ref: 'User' },
-  //   timestamps: true
-  // }],
+  comments: [{
+    content: String,
+    user: { type: mongoose.Schema.ObjectId, ref: 'User' },
+    time: { type: Date, default: Date.now }
+  }],
   likes: [{ type: mongoose.Schema.ObjectId, ref: 'User'}]
 });
 
