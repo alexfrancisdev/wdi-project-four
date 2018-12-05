@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-const { dbURI } = require('../config/environment');
+const { dbUri } = require('../config/environment');
 const Building = require('../models/building');
 const User = require('../models/user');
 
@@ -14,7 +14,7 @@ const userData = [{
   password: 'pass'
 }];
 
-mongoose.connect(dbURI, (err, db) => {
+mongoose.connect(dbUri, (err, db) => {
   db.dropDatabase();
 
   Building.create([{

@@ -11,10 +11,10 @@ const buildingSchema = mongoose.Schema({
   description: String,
   style: {type: String, enum: ['new', 'old']},
   icon: String,
-  gallery: [{
-    image: String,
-    user: { type: mongoose.Schema.ObjectId, ref: 'User' },
-    timestamps: true}],
+  // gallery: [{
+  //   image: String,
+  //   user: { type: mongoose.Schema.ObjectId, ref: 'User' },
+  //   timestamps: true}],
   location: {
     // lat: { type: Number, required: 'This field is required' },
     // lng: { type: Number, required: 'This field is required' }
@@ -23,11 +23,11 @@ const buildingSchema = mongoose.Schema({
   },
   address: String,
   addedBy: { type: mongoose.Schema.ObjectId, ref: 'User' },
-  comments: [{
-    content: String,
-    user: { type: mongoose.Schema.ObjectId, ref: 'User' },
-    timestamps: true
-  }],
+  // comments: [{
+  //   content: String,
+  //   user: { type: mongoose.Schema.ObjectId, ref: 'User' },
+  //   timestamps: true
+  // }],
   likes: [{ type: mongoose.Schema.ObjectId, ref: 'User'}]
 });
 
