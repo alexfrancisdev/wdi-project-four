@@ -47,7 +47,6 @@ function deleteRoute(req, res, next) {
 
 function commentCreateRoute(req, res, next) {
   req.body.user = req.currentUser;
-  console.log('!!!!!!!', req.body);
   Building
     .findById(req.params.id)
     .populate('comments.user')
@@ -66,10 +65,10 @@ function commentDeleteRoute(req, res, next) {
     .populate('comments.user')
     .then(building => {
       const comment = building.comments.id(req.params.commentId);
-      console.log('=======> MADE IT!!!!!', comment);
-      // if(!comment.user._id.equals(req.currentUser._id)) {
-      //   throw new Error('Unauthorized');
-      // }
+      console.log('=======> MADE IT!!!!!', comment.user._id);
+      if(!comment.user._id.equals(req.currentUser._id)) {
+        throw new Error('Unauthorized');
+      }
       comment.remove();
       return building.save();
     })
@@ -82,14 +81,28 @@ function like(req, res, next) {
   Building
     .findById(req.params.id)
     .then(building => {
-      console.log('got this far');
-      console.log('Id is ', req.params.id);
       if (!building.likes.find(userId => userId.toString() === req.tokenUserId)) {
-        building.votes.push('good boy');
+        building.likes.push(req.tokenUserId);
         return building.save();
       } else {
-        res.status(422).json({ message: 'Cannot vote twice'});
+        res.status(422).json({ message: 'Cannot like twice'});
         next();
+      }
+    })
+    .then(building => res.json(building))
+    .catch(next);
+}
+
+function unlike(req, res, next) {
+  console.log('I DO NOT LIKE!');
+  Building
+    .findById(req.params.id)
+    .then(building => {
+      if (!building.likes.find(userId => userId.toString() === req.tokenUserId)) {
+        res.status(422).json({ message: 'No like to remove'});
+      } else {
+        building.likes = building.likes.filter(x => x.toString() !== req.tokenUserId);
+        return building.save();
       }
     })
     .then(building => res.json(building))
@@ -105,5 +118,6 @@ module.exports = {
   delete: deleteRoute,
   commentCreate: commentCreateRoute,
   commentDelete: commentDeleteRoute,
-  like: like
+  like: like,
+  unlike: unlike
 };
