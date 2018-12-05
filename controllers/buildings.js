@@ -53,7 +53,7 @@ function like(req, res, next) {
       console.log('got this far');
       console.log('Id is ', req.params.id);
       if (!building.likes.find(userId => userId.toString() === req.tokenUserId)) {
-        building.votes.push('good boy');
+        building.likes.push(req.tokenUserId);
         return building.save();
       } else {
         res.status(422).json({ message: 'Cannot vote twice'});
