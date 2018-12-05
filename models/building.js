@@ -11,10 +11,11 @@ const buildingSchema = mongoose.Schema({
   description: String,
   style: {type: String, enum: ['new', 'old']},
   icon: String,
-  // gallery: [{
-  //   image: String,
-  //   user: { type: mongoose.Schema.ObjectId, ref: 'User' },
-  //   timestamps: true}],
+  gallery: [{
+    image: String,
+    user: { type: mongoose.Schema.ObjectId, ref: 'User' },
+    time: { type: Date, default: Date.now }
+  }],
   location: {
     // lat: { type: Number, required: 'This field is required' },
     // lng: { type: Number, required: 'This field is required' }

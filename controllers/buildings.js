@@ -47,6 +47,7 @@ function deleteRoute(req, res, next) {
 
 function commentCreateRoute(req, res, next) {
   req.body.user = req.currentUser;
+  console.log('!!!!!!!', req.body);
   Building
     .findById(req.params.id)
     .populate('comments.user')
@@ -58,21 +59,43 @@ function commentCreateRoute(req, res, next) {
     .then(building => res.json(building))
     .catch(next);
 }
+
 function commentDeleteRoute(req, res, next) {
   Building
     .findById(req.params.id)
     .populate('comments.user')
     .then(building => {
-      const comment = building.comment.id(req.params.commentId);
-      if(!comment.user._id.equals(req.currentUser._id)) {
-        throw new Error('Unauthorized');
-      }
+      const comment = building.comments.id(req.params.commentId);
+      console.log('=======> MADE IT!!!!!', comment);
+      // if(!comment.user._id.equals(req.currentUser._id)) {
+      //   throw new Error('Unauthorized');
+      // }
       comment.remove();
       return building.save();
     })
     .then(building => res.json(building))
     .catch(next);
 }
+
+function like(req, res, next) {
+  console.log('Me like!!!');
+  Building
+    .findById(req.params.id)
+    .then(building => {
+      console.log('got this far');
+      console.log('Id is ', req.params.id);
+      if (!building.likes.find(userId => userId.toString() === req.tokenUserId)) {
+        building.votes.push('good boy');
+        return building.save();
+      } else {
+        res.status(422).json({ message: 'Cannot vote twice'});
+        next();
+      }
+    })
+    .then(building => res.json(building))
+    .catch(next);
+}
+
 
 module.exports = {
   index: indexRoute,
@@ -81,5 +104,6 @@ module.exports = {
   update: updateRoute,
   delete: deleteRoute,
   commentCreate: commentCreateRoute,
-  commentDelete: commentDeleteRoute
+  commentDelete: commentDeleteRoute,
+  like: like
 };

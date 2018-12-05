@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { secret } = require('../config/environment');
 
 function register(req, res, next) {
+  console.log('register running');
   User.create(req.body)
     .then(user => {
 
@@ -18,6 +19,7 @@ function register(req, res, next) {
 }
 
 function login(req, res, next) {
+  console.log('login running');
   User.findOne({ email: req.body.email })
     .select('+password')
     .then(user => {
