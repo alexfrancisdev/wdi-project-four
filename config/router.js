@@ -4,13 +4,13 @@ const buildings = require('../controllers/buildings');
 // const secureRoute = require('../lib/secureRoute');
 
 router.route('/buildings')
-  .get(buildings.index);
-// .post(buildings.create);
+  .get(buildings.index)
+  .post(buildings.create);
 
-// router.route('/buildings/:id')
-//   .get(buildings.show)
-//   .put(buildings.update)
-//   .delete(buildings.delete);
+router.route('/buildings/:id')
+  .get(buildings.show)
+  .put(buildings.update)
+  .delete(buildings.delete);
 //
 // router.post('/register', auth.register);
 // router.post('/login', auth.login);
