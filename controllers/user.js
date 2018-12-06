@@ -3,17 +3,16 @@ const User = require('../models/user');
 function indexRoute(req, res, next) {
   User
     .find()
-    .populate('buildingsAdded')
+    .populate('buildingsAdded following')
     .exec()
     .then(users => res.json(users))
     .catch(next);
 }
 
-
 function showRoute(req, res, next) {
   User
     .findById(req.params.id)
-    .populate('buildingsAdded')
+    .populate('buildingsAdded following')
     .select('-password')
     .then(user => {
       res.json(user);
@@ -21,8 +20,6 @@ function showRoute(req, res, next) {
     .catch(next);
 }
 
-
-///////ALEX ADDED///////
 function follow(req, res, next) {
   console.log('I\'ll be watching you');
   User
@@ -55,8 +52,6 @@ function unfollow(req, res, next) {
     .then(user => res.json(user))
     .catch(next);
 }
-
-/////////////
 
 module.exports = {
   index: indexRoute,
