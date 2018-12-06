@@ -2,6 +2,7 @@ const router = require('express').Router();
 const buildings = require('../controllers/buildings');
 // const tours = require('../controllers/tours');
 const auth = require('../controllers/auth');
+const user = require('../controllers/user');
 // const attendees= require('../controllers/attendees');
 const jwt = require('jsonwebtoken');
 const { secret } = require('../config/environment');
@@ -48,6 +49,12 @@ router.route('/buildings/:id/unlike')
 
 router.post('/register', auth.register);
 router.post('/login', auth.login);
+
+router.route('/users')
+  .get(user.index);
+
+router.route('/users/:id')
+  .get(user.show);
 
 module.exports = router;
 

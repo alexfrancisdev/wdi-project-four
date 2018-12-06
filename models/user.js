@@ -17,6 +17,12 @@ userSchema.methods.validatePassword = function(attemptedPassword){
   return bcrypt.compareSync(attemptedPassword, this.password);
 };
 
+userSchema.virtual('buildingsAdded', {
+  ref: 'Building',
+  localField: '_id',
+  foreignField: 'addedBy'
+});
+
 // userSchema.virtual('toursAttending', {
 //   ref: 'Tour',
 //   localField: '_id',
