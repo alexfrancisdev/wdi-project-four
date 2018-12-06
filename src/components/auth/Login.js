@@ -1,20 +1,24 @@
 import React from 'react';
 import axios from 'axios';
-import { saveToken } from '../../lib/auth';
-import { handleChange } from '../../lib/common';
+import { saveToken } from '../../lib/Auth';
 
-class Register extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.handleChange = handleChange.bind(this);
+class Login extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+    };
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleChange = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
+  }
 
-    axios.post('/api/register', this.state)
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state);
+    axios.post('/api/login', this.state)
       .then(res => {
         saveToken(res.data.token);
       })
@@ -27,14 +31,6 @@ class Register extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className="field">
-          <input
-            className="input"
-            name="username"
-            placeholder="Username"
-            onChange={this.handleChange}
-          />
-        </div>
         <div className="field">
           <input
             className="input"
@@ -58,4 +54,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default Login;
