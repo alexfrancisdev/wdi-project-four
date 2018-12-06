@@ -7,6 +7,8 @@ import Navbar from './components/Navbar';
 import Explore from './components/buildings/Explore';
 
 import './scss/style.scss';
+import 'bulma';
+
 
 class App extends React.Component {
   render() {
