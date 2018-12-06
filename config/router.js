@@ -46,8 +46,6 @@ router.route('/buildings/:id/like')
 router.route('/buildings/:id/unlike')
   .post(secureRoute, buildings.unlike);
 
-
-
 router.post('/register', auth.register);
 router.post('/login', auth.login);
 
