@@ -10,7 +10,6 @@ const User = require('../models/user');
 // const secureRoute = require('../lib/secureRoute');
 
 function secureRoute(req, res, next) {
-  console.log(User);
   if(!req.headers.authorization) return res.status(401).json({ message: 'Unauthorized' });
   const token = req.headers.authorization.replace('Bearer ', '');
   new Promise((resolve, reject) => {
@@ -55,6 +54,13 @@ router.route('/users')
 
 router.route('/users/:id')
   .get(user.show);
+
+router.route('/users/:id/follow')
+  .post(secureRoute, user.follow);
+
+router.route('/users/:id/unfollow')
+  .post(secureRoute, user.unfollow);
+
 
 module.exports = router;
 
