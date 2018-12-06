@@ -1,7 +1,21 @@
-* {
-  font-size: 42px;
+// Common
+img {
+  object-fit: cover;
 }
 
+
+// Buildings
+.building-box {
+  border: solid #F3F3F3 1px;
+  border-radius: 5%;
+
+  img {
+    padding: 5px;
+  }
+}
+
+
+// Maps
 $box-color: #fffeff;
 .box-container {
   display: flex;

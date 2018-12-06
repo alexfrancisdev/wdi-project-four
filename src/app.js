@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header';
-// import Navbar from './components/Navbar';
+import Navbar from './components/Navbar';
 import Home from './components/home/Home';
 import Explore from './components/buildings/Explore';
 
@@ -23,7 +23,7 @@ class App extends React.Component {
               <Route exact path="/explore" component={Explore}/>
             </Switch>
           </main>
-
+          <Navbar />
         </div>
       </BrowserRouter>
     );
