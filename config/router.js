@@ -18,23 +18,11 @@ function secureRoute(req, res, next) {
     .then(user => {
       if(!user) return res.status(401).json({ message: 'Unauthorized' });
       req.currentUser = user;
+      req.tokenUserId = jwt.decode(token).sub;
       next();
     })
     .catch(next);
 }
-// function secureRoute(req, res, next) {
-//   if (!req.headers.authorization)
-//     res.status(401).json({ message: 'unauthorised'});
-//   const token = req.headers.authorization.replace('Bearer ', '');
-//   jwt.verify(token, 'hush', function(err) {
-//     if(err){
-//       res.status(401).json({ message: 'Unauthorised!' });
-//     } else {
-//       req.tokenUserId = jwt.decode(token).sub;
-//       next();
-//     }
-//   });
-// }
 
 router.route('/buildings')
   .get(buildings.index)
