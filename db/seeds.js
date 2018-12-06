@@ -32,11 +32,19 @@ mongoose.connect(dbUri, (err, db) => {
   Building.create([{
     name: 'St Paul\'s Cathedral, London',
     icon: 'https://d12dkjq56sjcos.cloudfront.net/pub/media/catalog/product/cache/d9fe7781ddb2422361b5e0fbe1b7086d/b/b/bbt_product_attractions_london_st-pauls.jpg',
-    addedBy: userIds[0]
+    addedBy: userIds[0],
+    location: {
+      lat: 51.5138,
+      lng: 0.0984
+    }
   },{
     name: 'Sagrada Familia',
     icon: 'https://www.arup.com/-/media/arup/images/projects/s/sagrada-familia/sagrada-familia-2000x1125-2.jpg',
-    addedBy: userIds[1]
+    addedBy: userIds[1],
+    location: {
+      lat: 41.4036,
+      lng: 2.1744
+    }
   }])
     .then(buildings => {
       console.log(`${buildings.length} buildings created`);
