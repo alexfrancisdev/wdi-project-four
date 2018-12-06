@@ -1,47 +1,66 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 // import SearchExplore from './SearchExplore';
+import BuildingBox from './BuildingBox';
 
 class Explore extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
-    // this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      query: ''
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
   // handleChange(e) {
   //   const { target: {name, value} } = e;
   //   this.setState({ [name]: value });
   // }
+  handleFilter() {
+    if (this.state.buildings[0].name.toLowerCase().startsWith(this.state.query.toLowerCase()) ||
+    this.state.buildings[0].architect.toLowerCase().startsWith(this.state.query.toLowerCase())) {
+      console.log('----------match');
+    } else if (!this.state.buildings[0].name.toLowerCase().startsWith(this.state.query.toLowerCase()) ||
+    this.state.buildings[0].architect.toLowerCase().startsWith(this.state.query.toLowerCase())) {
+      console.log('---------NO match');
+    }
+  }
 
-  ComponentDidMount() {
+  handleInputChange() {
+    this.setState({
+      query: this.search.value
+    });
+    this.handleFilter();
+  }
+
+
+
+  componentDidMount() {
     axios
       .get('/api/buildings')
-      .then(result => this.setState({ buildings: result.data }));
+      .then(result => this.setState({ buildings: result.data }, () => console.log('===>', this.state)));
   }
 
   render() {
-    console.log('===>', this.state.buildings);
     return (
       <section>
         <div>
           <h1>Search</h1>
-          {/* <div>
-            <SearchExplore onChange={this.handleChange}/>
-          </div> */}
+          <form>
+            <input
+              placeholder="Search for..."
+              ref={input => this.search = input}
+              onChange={this.handleInputChange}
+            />
+          </form>
         </div>
         <hr/>
         <div>
-          <h1>Results</h1>
+          <h1 className="subtitle">Results</h1>
           <div>
             {this.state.buildings && this.state.buildings.map(
-              building => <div key={building._id} building={building}>
-                <Link to={`building/${building._id}`}>
-                  <img src={building.icon}/>
-                  <h1>{building.name}</h1>
-                </Link>
-              </div>
+              building => <BuildingBox key={building._id} building={building}/>
             )}
           </div>
         </div>

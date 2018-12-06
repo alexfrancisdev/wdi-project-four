@@ -68,6 +68,7 @@ mongoose.connect(dbUri, (err, db) => {
   Building.create([{
     _id: buildingIds[0],
     name: 'St Paul\'s Cathedral, London',
+    architect: 'Sir Christopher Wren',
     icon: 'https://d12dkjq56sjcos.cloudfront.net/pub/media/catalog/product/cache/d9fe7781ddb2422361b5e0fbe1b7086d/b/b/bbt_product_attractions_london_st-pauls.jpg',
     addedBy: userIds[0],
     location: {
@@ -104,6 +105,7 @@ mongoose.connect(dbUri, (err, db) => {
   },  {
     _id: buildingIds[4],
     name: 'Sagrada Familia',
+    architect: 'Antoni Gaudí',
     icon: 'https://www.arup.com/-/media/arup/images/projects/s/sagrada-familia/sagrada-familia-2000x1125-2.jpg',
     addedBy: userIds[3],
     location: {
