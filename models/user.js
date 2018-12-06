@@ -17,4 +17,10 @@ userSchema.methods.validatePassword = function(attemptedPassword){
   return bcrypt.compareSync(attemptedPassword, this.password);
 };
 
+// userSchema.virtual('toursAttending', {
+//   ref: 'Tour',
+//   localField: '_id',
+//   foreignField: 'attendees'
+// });
+
 module.exports = mongoose.model('User', userSchema);

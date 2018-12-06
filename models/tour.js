@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const tourSchema = mongoose.Schema({
   name: { type: String, required: 'This field is required' },
-  description: { type: String, required: 'This field is required' },
+  description: String,
+  // description: { type: String, required: 'This field is required' },
   buildings: {
     type: mongoose.Schema.ObjectId,
     ref: 'Building'
@@ -12,9 +13,10 @@ const tourSchema = mongoose.Schema({
   comments: [{
     content: String,
     user: { type: mongoose.Schema.ObjectId, ref: 'User' },
-    timestamps: true
+    time: { type: Date, default: Date.now }
   }],
-  likes: [{ type: mongoose.Schema.ObjectId, ref: 'User'}]
+  likes: [{ type: mongoose.Schema.ObjectId, ref: 'User'}],
+  attendees: [{ type: mongoose.Schema.ObjectId, ref: 'User' } ]
 });
 
 module.exports = mongoose.model('Tour', tourSchema);

@@ -3,6 +3,7 @@ mongoose.Promise = require('bluebird');
 const { dbUri } = require('../config/environment');
 const Building = require('../models/building');
 const User = require('../models/user');
+const Tour = require('../models/tour');
 
 const userData = [{
   username: 'Sophia',
@@ -14,6 +15,10 @@ const userData = [{
   password: 'pass'
 }];
 
+const tourData = [{
+  name: 'London Tour'
+}];
+
 mongoose.connect(dbUri, (err, db) => {
   db.dropDatabase();
 
@@ -23,6 +28,11 @@ mongoose.connect(dbUri, (err, db) => {
   }])
     .then(buildings => {
       console.log(`${buildings.length} buildings created`);
+      Tour
+        .create(tourData)
+        .then(tours => {
+          console.log(`${tours.length} tours created`);
+        });
       User
         .create(userData)
         .then(users => {
