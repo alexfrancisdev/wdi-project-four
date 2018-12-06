@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const buildings = require('../controllers/buildings');
+// const tours = require('../controllers/tours');
 const auth = require('../controllers/auth');
+// const attendees= require('../controllers/attendees');
 const jwt = require('jsonwebtoken');
 const { secret } = require('../config/environment');
 const User = require('../models/user');
@@ -54,7 +56,32 @@ router.route('/buildings/:id/like')
 router.route('/buildings/:id/unlike')
   .post(secureRoute, buildings.unlike);
 
+
+
 router.post('/register', auth.register);
 router.post('/login', auth.login);
 
 module.exports = router;
+
+// TOURS
+// router.route('/tours')
+//   .get(tours.index)
+//   .post(tours.create);
+//
+// router.route('/tours/:id')
+//   .get(tours.show)
+//   .put(tours.update)
+//   .delete(tours.delete);
+//
+// router.post('/tours/:id/comments', secureRoute, tours.commentCreate);
+// router.delete('/tours/:id/comments/:commentId', secureRoute, tours.commentDelete);
+//
+// router.route('/events/:tourId/attendees')
+//   .get(attendees.indexRoute)
+//   .post(secureRoute, attendees.createRoute);
+//
+// router.route('/tours/:id/like')
+//   .post(secureRoute, tours.like);
+//
+// router.route('/tours/:id/unlike')
+//   .post(secureRoute, tours.unlike);
