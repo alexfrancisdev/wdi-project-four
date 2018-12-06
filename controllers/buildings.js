@@ -18,6 +18,8 @@ function showRoute(req, res, next) {
 }
 
 function createRoute(req, res, next) {
+  req.body.addedBy = req.currentUser;
+  console.log('the body', req.body);
   Building
     .create(req.body)
     .then(building => res.status(201).json(building))

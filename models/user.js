@@ -5,7 +5,8 @@ const userSchema = mongoose.Schema({
   username: { type: String, required: 'This field is required' },
   email: { type: String, required: 'This field is required' },
   password: { type: String, required: 'This field is required' },
-  image: String
+  image: String,
+  followers: [{ type: mongoose.Schema.ObjectId, ref: 'User'}]
 });
 
 userSchema.pre('save', function(){

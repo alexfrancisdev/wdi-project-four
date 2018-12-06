@@ -28,12 +28,12 @@ function secureRoute(req, res, next) {
 
 router.route('/buildings')
   .get(buildings.index)
-  .post(buildings.create);
+  .post(secureRoute, buildings.create);
 
 router.route('/buildings/:id')
   .get(buildings.show)
-  .put(buildings.update)
-  .delete(buildings.delete);
+  .put(secureRoute, buildings.update)
+  .delete(secureRoute, buildings.delete);
 
 router.post('/buildings/:id/comments', secureRoute, buildings.commentCreate);
 router.delete('/buildings/:id/comments/:commentId', secureRoute, buildings.commentDelete);
