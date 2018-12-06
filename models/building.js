@@ -4,7 +4,6 @@ const buildingSchema = mongoose.Schema({
   name: { type: String, required: 'This field is required' },
   architect: String,
   yearBuilt: {
-    // from: { type: Number, required: 'This field is required' },
     from: Number,
     to: Number
   },
@@ -17,8 +16,6 @@ const buildingSchema = mongoose.Schema({
     time: { type: Date, default: Date.now }
   }],
   location: {
-    // lat: { type: Number, required: 'This field is required' },
-    // lng: { type: Number, required: 'This field is required' }
     lat: Number,
     lng: Number
   },
@@ -30,6 +27,16 @@ const buildingSchema = mongoose.Schema({
     time: { type: Date, default: Date.now }
   }],
   likes: [{ type: mongoose.Schema.ObjectId, ref: 'User'}]
+});
+
+buildingSchema.virtual('featuredOn', {
+  ref: 'Tour',
+  localField: '_id',
+  foreignField: 'buildings'
+});
+
+buildingSchema.set('toJSON', {
+  virtuals: true
 });
 
 const buildingModel = mongoose.model('Building', buildingSchema);

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const buildings = require('../controllers/buildings');
-// const tours = require('../controllers/tours');
+const tours = require('../controllers/tours');
 const auth = require('../controllers/auth');
 const user = require('../controllers/user');
 // const attendees= require('../controllers/attendees');
@@ -61,28 +61,22 @@ router.route('/users/:id/follow')
 router.route('/users/:id/unfollow')
   .post(secureRoute, user.unfollow);
 
+router.route('/tours')
+  .get(tours.index)
+  .post(tours.create);
+
+router.route('/tours/:id')
+  .get(tours.show)
+  .put(tours.update)
+  .delete(tours.delete);
+
+router.post('/tours/:id/comments', secureRoute, tours.commentCreate);
+router.delete('/tours/:id/comments/:commentId', secureRoute, tours.commentDelete);
+
+router.route('/tours/:id/like')
+  .post(secureRoute, tours.like);
+
+router.route('/tours/:id/unlike')
+  .post(secureRoute, tours.unlike);
 
 module.exports = router;
-
-// TOURS
-// router.route('/tours')
-//   .get(tours.index)
-//   .post(tours.create);
-//
-// router.route('/tours/:id')
-//   .get(tours.show)
-//   .put(tours.update)
-//   .delete(tours.delete);
-//
-// router.post('/tours/:id/comments', secureRoute, tours.commentCreate);
-// router.delete('/tours/:id/comments/:commentId', secureRoute, tours.commentDelete);
-//
-// router.route('/events/:tourId/attendees')
-//   .get(attendees.indexRoute)
-//   .post(secureRoute, attendees.createRoute);
-//
-// router.route('/tours/:id/like')
-//   .post(secureRoute, tours.like);
-//
-// router.route('/tours/:id/unlike')
-//   .post(secureRoute, tours.unlike);

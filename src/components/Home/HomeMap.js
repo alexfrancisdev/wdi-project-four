@@ -13,14 +13,15 @@ const HomeMap = ({ userPosition, buildings }) => {
         />
         {userPosition && <Marker position={userPosition}>
           <Popup>
-        This me!
+        Your location!
           </Popup>
         </Marker>}
         {buildings && buildings.map(building =>
           <Marker key={building._id} position={[building.location.lat, building.location.lng]}>
             <Popup>
               <Link to={`/buildings/${building._id}`}>
-                {building.name}
+                <h2>{building.name}</h2>
+                <img src={building.icon}/>
               </Link>
             </Popup>
           </Marker>

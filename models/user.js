@@ -29,11 +29,11 @@ userSchema.virtual('following', {
   foreignField: 'followedBy'
 });
 
-// userSchema.virtual('toursAttending', {
-//   ref: 'Tour',
-//   localField: '_id',
-//   foreignField: 'attendees'
-// });
+userSchema.virtual('toursCreated', {
+  ref: 'Tour',
+  localField: '_id',
+  foreignField: 'createdBy'
+});
 
 userSchema.set('toJSON', {
   virtuals: true
