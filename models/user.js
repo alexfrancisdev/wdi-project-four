@@ -29,4 +29,8 @@ userSchema.virtual('buildingsAdded', {
 //   foreignField: 'attendees'
 // });
 
+userSchema.set('toJSON', {
+  virtuals: true
+});
+
 module.exports = mongoose.model('User', userSchema);
