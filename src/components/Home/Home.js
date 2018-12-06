@@ -1,20 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 
-import HomeMap from './Map';
+import HomeMap from './HomeMap';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      buildings: null,
-      likedBuilding: null,
-      followingBuildings: null,
-      userBuildings: null,
       userPosition: null
     };
     this.getLocation = this.getLocation.bind(this);
     this.getBuildings = this.getBuildings.bind(this);
+
   }
 
   getLocation(pos) {
@@ -25,7 +22,7 @@ class Home extends React.Component {
 
   getBuildings() {
     axios.get('/api/buildings')
-      .then(res => this.setState({ buildings: res.data }));
+      .then(res => this.setState({ buildings: res.data }, () => console.log('this is state, ', this.state)));
   }
 
   componentDidMount() {
