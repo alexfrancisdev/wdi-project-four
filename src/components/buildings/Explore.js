@@ -13,19 +13,18 @@ class Explore extends React.Component {
     this.handleFilter = this.handleFilter.bind(this);
   }
 
-  // handleChange(e) {
-  //   const { target: {name, value} } = e;
-  //   this.setState({ [name]: value });
-  // }
+
   handleFilter() {
-    if (this.state.buildings[0].name.toLowerCase().startsWith(this.state.query.toLowerCase()) ||
-    this.state.buildings[0].architect.toLowerCase().startsWith(this.state.query.toLowerCase())) {
-      console.log('----------match');
+    if (this.state.buildings[0].name.toLowerCase().startsWith(this.state.query.toLowerCase())) {
+      console.log('----------match', this.state.buildings[0].name);
+    } else if (this.state.buildings[0].architect.toLowerCase().startsWith(this.state.query.toLowerCase())) {
+      console.log('----------match', this.state.buildings[0].architect);
     } else if (!this.state.buildings[0].name.toLowerCase().startsWith(this.state.query.toLowerCase()) ||
     this.state.buildings[0].architect.toLowerCase().startsWith(this.state.query.toLowerCase())) {
       console.log('---------NO match');
     }
   }
+
 
   handleInputChange() {
     this.setState({
@@ -52,6 +51,7 @@ class Explore extends React.Component {
               placeholder="Search for..."
               ref={input => this.search = input}
               onChange={this.handleInputChange}
+              className="form-input"
             />
           </form>
         </div>
