@@ -11,7 +11,7 @@ function indexRoute(req, res, next) {
 function showRoute(req, res, next) {
   Building
     .findById(req.params.id)
-    .populate('comments.user')
+    .populate('comments.user featuredOn')
     .exec()
     .then(building => res.json(building))
     .catch(next);
