@@ -14,7 +14,6 @@ class Show extends React.Component {
   }
 
   render() {
-    console.log('On state! =====>', this.state.building);
     const building = this.state.building;
     return(
       <div>
