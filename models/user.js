@@ -23,6 +23,12 @@ userSchema.virtual('buildingsAdded', {
   foreignField: 'addedBy'
 });
 
+userSchema.virtual('buildingsLiked', {
+  ref: 'Building',
+  localField: '_id',
+  foreignField: 'likes'
+});
+
 userSchema.virtual('following', {
   ref: 'User',
   localField: '_id',
