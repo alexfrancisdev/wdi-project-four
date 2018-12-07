@@ -37,22 +37,26 @@ const userData = [{
   _id: userIds[0],
   username: 'Sophia',
   email: 's@s.com',
-  password: 'pass'
+  password: 'pass',
+  image: 'http://strangebeaver.com/wp-content/uploads/2011/01/fb/8.jpg'
 }, {
   _id: userIds[1],
   username: 'Alex',
   email: 'a@a.com',
-  password: 'pass'
+  password: 'pass',
+  image: 'https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg'
 }, {
   _id: userIds[2],
   username: 'Barry',
   email: 'b@b.com',
-  password: 'pass'
+  password: 'pass',
+  image: 'http://www.vincegolangco.com/wp-content/uploads/2010/12/james-bond-for-facebook.jpg'
 }, {
   _id: userIds[3],
   username: 'Claire',
   email: 'c@c.com',
-  password: 'pass'
+  password: 'pass',
+  image: 'https://i.pinimg.com/236x/8d/90/a9/8d90a954dd2cbd7b67ed7e5b4013c46e.jpg'
 }];
 
 const tourData = [{
