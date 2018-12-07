@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Home from './components/home/Home';
 import Explore from './components/buildings/Explore';
+import Show from './components/buildings/Show';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 
@@ -23,6 +24,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route exact path="/explore" component={Explore}/>
+              <Route path="/explore/:id" component={Show}/>
               <Route path="/register" component={Register} />
               <Route path="/login" component={Login} />
             </Switch>
