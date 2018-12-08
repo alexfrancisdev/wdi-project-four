@@ -12,7 +12,7 @@ function indexRoute(req, res, next) {
 function showRoute(req, res, next) {
   Tour
     .findById(req.params.id)
-    .populate('createdBy')
+    .populate('createdBy buildings')
     .exec()
     .then(tour => res.json(tour))
     .catch(next);

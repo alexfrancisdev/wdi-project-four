@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Home from './components/home/Home';
 import Explore from './components/buildings/Explore';
 import Show from './components/buildings/Show';
+import NewTour from './components/tours/New';
 import UserShow from './components/user/UserShow';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
@@ -26,6 +27,7 @@ class App extends React.Component {
               <Route exact path="/" component={Home}/>
               <Route exact path="/explore" component={Explore}/>
               <Route path="/explore/:id" component={Show}/>
+              <Route path="/tours/new" component={NewTour}/>
               <Route path="/user/:id" component={UserShow}/>
               <Route path="/register" component={Register} />
               <Route path="/login" component={Login} />

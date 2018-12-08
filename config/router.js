@@ -10,7 +10,7 @@ const User = require('../models/user');
 // const secureRoute = require('../lib/secureRoute');
 
 function secureRoute(req, res, next) {
-  if(!req.headers.authorization) return res.status(401).json({ message: 'Unauthorized' });
+  if(!req.headers.authorization) return res.status(401).json({ message: 'Unauthorized 1' });
   const token = req.headers.authorization.replace('Bearer ', '');
   new Promise((resolve, reject) => {
     jwt.verify(token, secret, (err, payload) => {
@@ -20,8 +20,9 @@ function secureRoute(req, res, next) {
   })
     .then(payload => User.findById(payload.sub))
     .then(user => {
-      if(!user) return res.status(401).json({ message: 'Unauthorized' });
+      if(!user) return res.status(401).json({ message: 'Unauthorized 2' });
       req.currentUser = user;
+      console.log('req.currentUser', req.currentUser);
       req.tokenUserId = jwt.decode(token).sub;
       next();
     })
@@ -63,12 +64,12 @@ router.route('/users/:id/unfollow')
 
 router.route('/tours')
   .get(tours.index)
-  .post(tours.create);
+  .post(secureRoute, tours.create);
 
 router.route('/tours/:id')
   .get(tours.show)
-  .put(tours.update)
-  .delete(tours.delete);
+  .put(secureRoute, tours.update)
+  .delete(secureRoute, tours.delete);
 
 router.post('/tours/:id/comments', secureRoute, tours.commentCreate);
 router.delete('/tours/:id/comments/:commentId', secureRoute, tours.commentDelete);

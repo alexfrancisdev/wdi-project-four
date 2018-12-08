@@ -25,6 +25,11 @@ class Home extends React.Component {
       .then(res => this.setState({ buildings: res.data }, () => console.log('this is state, ', this.state)));
   }
 
+  getMyBuildings() {
+    //Need to do an axios get to the user then set it to state
+    axios.get('/api/users/currentUserId');
+  }
+
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(this.getLocation, this.getBuildings);
   }
