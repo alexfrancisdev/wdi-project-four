@@ -14,6 +14,7 @@ export function decodeToken() {
 }
 
 export function tokenUsername() {
+  console.log('Running!');
   return decodeToken().username;
 }
 
