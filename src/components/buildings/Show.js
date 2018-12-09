@@ -18,7 +18,7 @@ class Show extends React.Component {
     console.log('On state! =====>', this.state.building);
     const building = this.state.building;
     return(
-      <div>
+      <div className="centered-container">
         {building
           ?
           <div>
