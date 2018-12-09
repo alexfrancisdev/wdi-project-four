@@ -1,11 +1,18 @@
 import React from 'react';
 import axios from 'axios';
-// import { Link } from 'react-router-dom';
+import { decodeToken } from '../../lib/auth';
 
 class Show extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.handleAddedByClick = this.handleAddedByClick.bind(this);
+  }
+
+  handleAddedByClick() {
+    const userId = this.state.building.addedBy.id;
+    console.log(this.state.building.addedBy.id);
+    this.props.history.push(`/user/${userId}`);
   }
 
   componentDidMount() {
@@ -15,7 +22,7 @@ class Show extends React.Component {
   }
 
   render() {
-    console.log('On state! =====>', this.state.building);
+    console.log('this.state.building =====>', this.state.building);
     const building = this.state.building;
     return(
       <div className="centered-container">
@@ -28,7 +35,7 @@ class Show extends React.Component {
               </figure>
               <h1 className="title">{building.name}</h1>
               <h1 className="subtitle">{building.architect}</h1>
-              {/* <h1 className="subtitle">{building.addedBy}</h1> */}
+              <h1 className="subtitle is-size-6-mobile">Added by: <a onClick={this.handleAddedByClick} >{building.addedBy.username}</a></h1>
             </div>
             <hr/>
             <div>
