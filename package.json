@@ -46,6 +46,7 @@
     "body-parser": "^1.18.3",
     "bulma": "^0.7.1",
     "express": "^4.16.3",
+    "font-awesome": "^4.7.0",
     "google-maps-stub": "^1.0.1",
     "jsonwebtoken": "^8.2.1",
     "leaflet": "^1.3.4",
@@ -55,6 +56,7 @@
     "nodemon": "^1.18.7",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-fontawesome": "^1.6.1",
     "react-leaflet": "^2.1.2",
     "react-router-dom": "^4.3.1",
     "react-search-field": "^1.0.0"

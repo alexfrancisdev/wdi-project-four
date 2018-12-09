@@ -23,8 +23,8 @@ class NewTour extends React.Component {
   }
   render(){
     return(
-      <section>
-        <h2 className="subtitle is-2">Create a new tour</h2>
+      <section className="centered-container">
+        <h2 className="subtitle is-size-3-mobile">Create a new tour</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="field">
             <label className="label">Tour Name</label>

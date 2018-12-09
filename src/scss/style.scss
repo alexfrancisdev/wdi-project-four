@@ -1,7 +1,68 @@
+// Common
 * {
   font-size: 42px;
 }
 
+.centered-container {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+
+.centered-container-plus {
+  margin-top: 1rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.user-subtitle {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+// This is not overriding bulma :( for the user show page
+// .box {
+//   padding: 1rem;
+// }
+
+.explore-title {
+  margin-bottom: 1rem;
+}
+
+form {
+  margin-top: -1rem;
+}
+
+// Header and Navbar
+.navbar-brand {
+  list-style: none;
+  margin: 0 2px;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.fa-home:before, .fa-search:before, .fa-user:before, .fa-sign-out:before {
+  font-size: 24px;
+}
+
+.fa-home:after, .fa-search:after, .fa-user:after, .fa-sign-out:after {
+  font-size: 34px;
+}
+.header, .navbar {
+  // background-color: #FF817F;
+  .logo {
+    font-family: 'Pacifico', cursive;
+    padding: 0.5rem 1rem;
+    // color: white;
+  }
+}
+
+
+
+$fa-font-path: "~font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome.scss';
+
+// Maps
 $box-color: #fffeff;
 .box-container {
   display: flex;
@@ -24,15 +85,38 @@ $box-color: #fffeff;
 }
 
 #map {
-  height: 600px;
+  height: 555px;
   width: 100%;
+}
+
+.map-container {
+  padding: 0;
 }
 
 .leaflet-container {
   width: 100%;
-  height: 600px;
+  height: 555px;
 }
+
+// Explore
 
 .form-input {
   outline: none;
+  background-color: #fcfcfc;
+  border-style: none;
+  padding: 0.25rem;
+  border-radius: 5px;
+  color: black;
 }
+
+.filteredBuilding-box {
+  div {
+    figure {
+      img {
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+// Auth

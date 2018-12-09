@@ -33,23 +33,30 @@ class Explore extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <section>
-        <div>
-          <h1>Search</h1>
+        <div className="centered-container">
           <form>
             <input
               placeholder="Search for..."
               ref={input => this.search = input}
               // value={this.search}
               onChange={this.handleInputChange}
-              className="form-input"
+              className="form-input subtitle is-size-6-mobile"
             />
           </form>
         </div>
-        <hr/>
-        <div>
-          <h1 className="subtitle">Results</h1>
+        <div className="centered-container">
+          <hr/>
+          <div>
+            {this.state.query === ''
+              ?
+              <h1 className="explore-title is-size-4-mobile">All Buildings</h1>
+              :
+              <h1 className="explore-title is-size-4-mobile">Search Results</h1>}
+          </div>
+
           <div>
             {this.state.filteredBuildings && this.state.filteredBuildings.map(
               filteredBuilding => <BuildingBox key={filteredBuilding._id} filteredBuilding={filteredBuilding}/>

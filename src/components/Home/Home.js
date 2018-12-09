@@ -36,12 +36,11 @@ class Home extends React.Component {
 
   render() {
     return (
-      <section className="section">
-        <h1 className="title">Buildings (hopefully)</h1>
+      <section className="map-container">
         <div className="box-container">
           {!this.state.userPosition && !this.state.buildings
             ?
-            <p>Loading map...</p>
+            <p className="is-size-6-mobile centered-container">Loading map...</p>
             :
             <HomeMap
               userPosition={this.state.userPosition}
