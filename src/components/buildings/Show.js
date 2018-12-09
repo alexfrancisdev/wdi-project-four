@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { decodeToken } from '../../lib/auth';
 
 class Show extends React.Component {
   constructor(props) {
@@ -47,11 +46,9 @@ class Show extends React.Component {
                     comment =>
                       <div key={comment._id} className="columns is-mobile">
                         <div className="column is-1">
-                          {/* <Link to={`users/${this.props.match.params.id}`}> */}
                           <figure className="image is-24x24">
                             <img className="is-rounded" src={comment.user.image}/>
                           </figure>
-                          {/* </Link> */}
                         </div>
                         <p className="column is-11 is-size-7-mobile">{comment.content}</p>
                       </div>
