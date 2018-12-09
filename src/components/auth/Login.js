@@ -31,7 +31,7 @@ class Login extends React.Component {
   render() {
     return (
       <div className="centered-container-plus">
-        <h1 className="subtitle is-size-4-mobile">Log In</h1>
+        <h1 className="subtitle is-size-3-mobile">Log In</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="field">
             <input
