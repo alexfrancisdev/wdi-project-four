@@ -3,7 +3,6 @@ import { Map, TileLayer, Marker, Popup} from 'react-leaflet';
 import { Link } from 'react-router-dom';
 import { redMarker, userMarker } from '../../lib/mapIcons';
 
-
 const HomeMap = ({ userPosition, buildings }) => {
   return (
     <div id='map'>

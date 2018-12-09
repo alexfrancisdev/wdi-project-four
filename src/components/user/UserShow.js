@@ -8,6 +8,7 @@ class UserShow extends React.Component {
     super(props);
     this.state = {};
     this.handleFollow = this.handleFollow.bind(this);
+    this.handleUnfollow = this.handleUnfollow.bind(this);
   }
 
   componentDidMount() {
@@ -15,18 +16,29 @@ class UserShow extends React.Component {
       .then(res => this.setState({ user: res.data }));
   }
 
+  // SB do you know what I'm doing wrong here. It's not setting to State properly
   handleFollow() {
     const currentUserId = tokenUserId();
-    console.log('this.state.currentUserId ====>',currentUserId);
-    console.log('this.state.user ====>',this.state.user);
+    const followedBy = this.state.user.followedBy;
+    followedBy.push(currentUserId);
+    this.setState({ followedBy: followedBy });
+    console.log('this.state.user.followedBy.toString() ====>', this.state.user.followedBy.toString());
+    console.log('currentUserId ====>',currentUserId);
+  }
 
-    this.state.user.push(currentUserId);
+  handleUnfollow() {
+    const currentUserId = tokenUserId();
+    const followedBy = this.state.user.followedBy;
+    followedBy.splice(followedBy.indexOf(currentUserId), 1);
+    this.setState({ followedBy: followedBy });
+    console.log('this.state.user.followedBy', this.state.user.followedBy);
+    console.log('currentUserId ====>',currentUserId);
   }
 
   render() {
     const user = this.state.user;
     const currentUserId = tokenUserId();
-    console.log(this.state);
+    console.log('THIS STATE USER', this.state.user);
     return(
       <div>
         {user
@@ -43,23 +55,46 @@ class UserShow extends React.Component {
                 <h1 className="title">{user.username}</h1>
                 {currentUserId === user._id
                   ?
-                  <p></p>
+                  <div>
+                    {user.following.length >= 1
+                      ?
+                      <div>
+                        <h1 className="user-subtitle is-size-5-mobile">Following</h1>
+                        {user.following && user.following.map(
+                          user =>
+                            <div key={user._id}>
+                              <p className="is-size-7-mobile">{user}</p>
+                            </div>
+                        )}
+                      </div>
+                      :
+                      <p></p>}
+
+                  </div>
                   :
-                  <button onClick={this.handleFollow} className="button">Follow</button>}
+                  <div>
+                    {/* {this.state.user.followedBy.toString() === tokenUserId()
+                      ?
+                      <button onClick={this.handleUnfollow} className="button">Unfollow</button>
+                      :
+                      <button onClick={this.handleFollow} className="button">Follow</button>} */}
+                    <button onClick={this.handleUnfollow} className="button">Unfollow</button>
+                    <button onClick={this.handleFollow} className="button">Follow</button>
+                  </div>}
               </div>
             </div>
-
-            {currentUserId === user._id
-              ?
-              <div>
-                <h1 className="user-subtitle is-size-5-mobile">Your Details</h1>
-                <div className="box">
-                  <h1 className="subtitle is-size-7-mobile">Email Address: {user.email}</h1>
+            <div>
+              {currentUserId === user._id
+                ?
+                <div>
+                  <h1 className="user-subtitle is-size-5-mobile">Your Details</h1>
+                  <div className="box">
+                    <h1 className="subtitle is-size-7-mobile">Email Address: {user.email}</h1>
+                  </div>
                 </div>
-              </div>
-              :
-              <p></p>}
-
+                :
+                <p></p>}
+            </div>
             <div>
               {currentUserId === user._id
                 ?
@@ -82,16 +117,7 @@ class UserShow extends React.Component {
               )}
             </div>
 
-            {user.following.length >= 1
-              ?
-              <div>
-                <h1 className="user-subtitle is-size-5-mobile">Following</h1>
-                <div className="box">
-                  <h1 className="subtitle is-size-7-mobile">Followed by: {user.following}</h1>
-                </div>
-              </div>
-              :
-              <p></p>}
+
 
           </div>
           :
