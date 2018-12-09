@@ -9,11 +9,16 @@ class UserShow extends React.Component {
     console.log('decodeToken ===>', decodeToken().sub);
   }
 
+  // componentDidMount() {
+  //   axios.get(`/api/user/${decodeToken().sub}`)
+  //     .then(result => this.setState({ user: result.data }), () => console.log('this.state ===>', this.state));
+  // }
+
   componentDidMount() {
-    // axios.get(`/api/user/${decodeToken().sub}`)
-    axios.get(`/api/user/${decodeToken().sub}`)
-      .then(result => this.setState({ user: result.data }), () => console.log('this.state ===>', this.state));
+    axios.get(`/api/users/${this.props.match.params.id}`)
+      .then(res => this.setState({ user: res.data }));
   }
+
 
   render() {
     const user = this.state.user;
