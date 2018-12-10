@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 const FA = require('react-fontawesome');
 import { deleteToken, decodeToken } from '../lib/auth';
+import routeIcon from '../assets/icons/router-icon.png';
 
 
 class Navbar extends React.Component {
@@ -22,6 +23,7 @@ class Navbar extends React.Component {
         <div className="navbar-brand">
           <Link className="navbar-item" to="/"><FA name="home"/></Link>
           <Link className="navbar-item" to="/explore"><FA name="search"/></Link>
+          <Link className="navbar-item" to="/tours"><img src={routeIcon}/></Link>
           <Link className="navbar-item" to={`/user/${decodeToken().sub}`}><FA name="user"/></Link>
           <a onClick={this.handleLogout} className="navbar-item" to='/login'><FA name="sign-out"/></a>
         </div>

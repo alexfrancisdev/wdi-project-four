@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { tokenUserId } from '../../lib/auth';
+import { tokenUserId, authorizationHeader } from '../../lib/auth';
 
 class UserShow extends React.Component {
   constructor(props) {
@@ -9,6 +9,7 @@ class UserShow extends React.Component {
     this.state = {};
     this.handleFollow = this.handleFollow.bind(this);
     this.handleUnfollow = this.handleUnfollow.bind(this);
+    // this.goToUser = this.goToUser.bind(this);
   }
 
   componentDidMount() {
@@ -16,14 +17,12 @@ class UserShow extends React.Component {
       .then(res => this.setState({ user: res.data }));
   }
 
-  // SB do you know what I'm doing wrong here. It's not setting to State properly
   handleFollow() {
     const currentUserId = tokenUserId();
     const followedBy = this.state.user.followedBy;
     followedBy.push(currentUserId);
     this.setState({ followedBy: followedBy });
-    console.log('this.state.user.followedBy.toString() ====>', this.state.user.followedBy.toString());
-    console.log('currentUserId ====>',currentUserId);
+    axios.post(`/api/users/${this.props.match.params.id}/follow`, this.state, authorizationHeader());
   }
 
   handleUnfollow() {
@@ -31,9 +30,16 @@ class UserShow extends React.Component {
     const followedBy = this.state.user.followedBy;
     followedBy.splice(followedBy.indexOf(currentUserId), 1);
     this.setState({ followedBy: followedBy });
+    axios.post(`/api/users/${this.props.match.params.id}/unfollow`, this.state, authorizationHeader());
     console.log('this.state.user.followedBy', this.state.user.followedBy);
     console.log('currentUserId ====>',currentUserId);
   }
+
+  // goToUser(e) {
+  //   const clickedUser = e.currentTarget.id;
+  //   console.log(clickedUser);
+  //   this.props.history.push(`/user/${clickedUser}`);
+  // }
 
   render() {
     const user = this.state.user;
@@ -55,31 +61,14 @@ class UserShow extends React.Component {
                 <h1 className="title">{user.username}</h1>
                 {currentUserId === user._id
                   ?
-                  <div>
-                    {user.following.length >= 1
-                      ?
-                      <div>
-                        <h1 className="user-subtitle is-size-5-mobile">Following</h1>
-                        {user.following && user.following.map(
-                          user =>
-                            <div key={user._id}>
-                              <p className="is-size-7-mobile">{user}</p>
-                            </div>
-                        )}
-                      </div>
-                      :
-                      <p></p>}
-
-                  </div>
+                  <div></div>
                   :
                   <div>
-                    {/* {this.state.user.followedBy.toString() === tokenUserId()
+                    {this.state.user.followedBy.toString().includes(tokenUserId())
                       ?
                       <button onClick={this.handleUnfollow} className="button">Unfollow</button>
                       :
-                      <button onClick={this.handleFollow} className="button">Follow</button>} */}
-                    <button onClick={this.handleUnfollow} className="button">Unfollow</button>
-                    <button onClick={this.handleFollow} className="button">Follow</button>
+                      <button onClick={this.handleFollow} className="button">Follow</button>}
                   </div>}
               </div>
             </div>
@@ -116,9 +105,28 @@ class UserShow extends React.Component {
                 </Link>
               )}
             </div>
+            <div>
+              {currentUserId === user._id
+                ?
+                <div>
+                  {user.following.length >= 1
+                    ?
+                    <div>
+                      <h1 className="user-subtitle is-size-5-mobile">Following</h1>
+                      {user.following && user.following.map(
+                        user =>
+                          <div  key={user._id}>
+                            <Link id={user._id} to={`/user/${user._id}`}><p className="is-size-7-mobile">{user.username}</p></Link>
+                          </div>
+                      )}
+                    </div>
+                    :
+                    <p></p>}
 
-
-
+                </div>
+                :
+                <div></div>}
+            </div>
           </div>
           :
           <p className="is-size-6-mobile centered-container">Please wait...</p>}
