@@ -12,7 +12,7 @@ import NewTour from './components/tours/New';
 import UserShow from './components/user/UserShow';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import Mapbox from './components/home/Mapbox';
+// import Mapbox from './components/home/Mapbox';
 import './scss/style.scss';
 import 'bulma';
 
@@ -33,7 +33,7 @@ class App extends React.Component {
               <Route path="/user/:id" component={UserShow}/>
               <Route path="/register" component={Register} />
               <Route path="/login" component={Login} />
-              <Route path="/mapbox" component={Mapbox} />
+              {/* <Route path="/mapbox" component={Mapbox} /> */}
             </Switch>
           </main>
           <Navbar />
