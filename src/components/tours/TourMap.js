@@ -3,8 +3,7 @@ import { Map, TileLayer, Marker, Popup} from 'react-leaflet';
 import { Link } from 'react-router-dom';
 import { redMarker, userMarker } from '../../lib/mapIcons';
 
-
-const HomeMap = ({ userPosition, buildings }) => {
+const TourMap = ({ userPosition, buildings }) => {
   return (
     <div id='map'>
       <Map center={userPosition} zoom={14}>
@@ -23,7 +22,6 @@ const HomeMap = ({ userPosition, buildings }) => {
               <Link to={`/explore/${building._id}`}>
                 <h2>{building.name}</h2>
                 <img src={building.icon}/>
-                <p>test</p>
               </Link>
             </Popup>
           </Marker>
@@ -33,4 +31,4 @@ const HomeMap = ({ userPosition, buildings }) => {
   );
 };
 
-export default HomeMap;
+export default TourMap;

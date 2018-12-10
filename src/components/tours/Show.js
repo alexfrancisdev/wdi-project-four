@@ -2,19 +2,27 @@ import React from 'react';
 import axios from 'axios';
 import { tokenUserId, authorizationHeader } from '../../lib/auth';
 
+import BuildingBox from '../buildings/BuildingBox';
+import TourMap from './TourMap';
 
 class Show extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      userPosition: null
+    };
     this.handleAddedByClick = this.handleAddedByClick.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.handleUnlike = this.handleUnlike.bind(this);
+    this.getLocation = this.getLocation.bind(this);
+  }
+
+  getLocation(pos) {
+    this.setState({ userPosition: [pos.coords.latitude, pos.coords.longitude]});
   }
 
   handleAddedByClick() {
-    const userId = this.state.tour.addedBy.id;
-    console.log(this.state.tour.addedBy.id);
+    const userId = this.state.tour.createdBy.id;
     this.props.history.push(`/user/${userId}`);
   }
 
@@ -32,19 +40,16 @@ class Show extends React.Component {
     likes.splice(likes.indexOf(currentUserId), 1);
     this.setState({ likes: likes });
     axios.post(`/api/tours/${this.props.match.params.id}/unlike`, this.state, authorizationHeader());
-    console.log('this.state', this.state);
-    console.log('currentUserId ====>',currentUserId);
-    console.log('this.state', this.state.tour.likes);
   }
 
   componentDidMount() {
+    navigator.geolocation.getCurrentPosition(this.getLocation);
     axios
       .get(`/api/tours/${this.props.match.params.id}`)
       .then(result => this.setState({ tour: result.data }));
   }
 
   render() {
-    console.log('this.state.tour =====>', this.state.tour);
     const tour = this.state.tour;
     return(
       <div className="centered-container">
@@ -58,7 +63,8 @@ class Show extends React.Component {
                 </div>
               </div>
               <h1 className="title">{tour.name}</h1>
-              <p>{tour.description}</p>
+              <p className="is-size-6">{tour.description}</p>
+              <hr/>
               {tour.likes.length === 1
                 ?
                 <h1 className="subtitle is-size-6-mobile">{tour.likes.length} like</h1>
@@ -70,6 +76,25 @@ class Show extends React.Component {
                 <button onClick={this.handleUnlike} className="button">Unlike</button>
                 :
                 <button onClick={this.handleLike} className="button">Like</button>}
+            </div>
+            <hr/>
+            <section className="map-container">
+              <div className="box-container">
+                {!this.state.userPosition && !tour.buildings
+                  ?
+                  <p className="is-size-6-mobile centered-container">Loading map...</p>
+                  :
+                  <TourMap
+                    userPosition={this.state.userPosition}
+                    buildings={tour.buildings} />
+                }
+              </div>
+            </section>
+            <hr/>
+            <div>
+              {tour.buildings && tour.buildings.map(
+                filteredBuilding => <BuildingBox key={filteredBuilding._id} filteredBuilding={filteredBuilding}/>
+              )}
             </div>
             <hr/>
             <div>
