@@ -82,7 +82,6 @@ class NewTour extends React.Component {
     event.preventDefault();
     axios.post('/api/tours', this.state, authorizationHeader())
       .then(result => {
-        console.log('new tour is', result);
         this.props.history.push(`/tours/${ result.data._id }`);
       });
   }
