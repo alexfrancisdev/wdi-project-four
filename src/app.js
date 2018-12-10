@@ -13,11 +13,7 @@ import TourShow from './components/tours/Show';
 import UserShow from './components/user/UserShow';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-<<<<<<< HEAD
-import Mapbox from './components/home/Mapbox';
-=======
 // import Mapbox from './components/home/Mapbox';
->>>>>>> development
 import './scss/style.scss';
 import 'bulma';
 
@@ -39,11 +35,7 @@ class App extends React.Component {
               <Route path="/user/:id" component={UserShow}/>
               <Route path="/register" component={Register} />
               <Route path="/login" component={Login} />
-<<<<<<< HEAD
-              <Route path="/mapbox" component={Mapbox} />
-=======
               {/* <Route path="/mapbox" component={Mapbox} /> */}
->>>>>>> development
             </Switch>
           </main>
           <Navbar />
