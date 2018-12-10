@@ -3,6 +3,10 @@
   font-size: 42px;
 }
 
+img {
+  object-fit: cover;
+}
+
 .centered-container {
   margin-left: 1.25rem;
   margin-right: 1.25rem;
@@ -32,14 +36,24 @@ form {
   margin-top: -1rem;
 }
 
-// Header and Navbar
+// Sections
+main {
+  height: 549px;
+  overflow: scroll;
+}
+
 .navbar-brand {
   list-style: none;
-  margin: 0 2px;
+  margin: 0;
   padding: 0;
   display: flex;
   justify-content: space-around;
 }
+
+.navbar {
+  height: 55px;
+}
+
 
 .fa-home:before, .fa-search:before, .fa-user:before, .fa-sign-out:before, .fa-link:before {
   font-size: 24px;
@@ -49,17 +63,14 @@ form {
   font-size: 34px;
 }
 
-
-.header, .navbar {
-  // background-color: #FF817F;
+.header {
+  height: 63px;
   .logo {
     font-family: 'Pacifico', cursive;
     padding: 0.5rem 1rem;
     // color: white;
   }
 }
-
-
 
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome.scss";
@@ -87,7 +98,7 @@ $box-color: #fffeff;
 }
 
 #map {
-  height: 555px;
+  height: 549px;
   width: 100%;
 }
 
@@ -97,7 +108,7 @@ $box-color: #fffeff;
 
 .leaflet-container {
   width: 100%;
-  height: 555px;
+  height: 549px;
 }
 
 // Explore

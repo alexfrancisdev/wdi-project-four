@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { saveToken } from '../../lib/Auth';
+import { saveToken } from '../../lib/auth';
 
 class Login extends React.Component {
   constructor() {
