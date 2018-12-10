@@ -38,25 +38,25 @@ const userData = [{
   username: 'Sophia',
   email: 's@s.com',
   password: 'pass',
-  image: 'http://strangebeaver.com/wp-content/uploads/2011/01/fb/8.jpg'
+  image: 'https://i.imgur.com/frnDmn4.png'
 }, {
   _id: userIds[1],
   username: 'Alex',
   email: 'a@a.com',
   password: 'pass',
-  image: 'https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg'
+  image: 'https://i.imgur.com/5YyQ1pB.png'
 }, {
   _id: userIds[2],
   username: 'Barry',
   email: 'b@b.com',
   password: 'pass',
-  image: 'http://www.vincegolangco.com/wp-content/uploads/2010/12/james-bond-for-facebook.jpg'
+  image: 'https://mirman.org/application/files/8515/3117/7169/C5DK_BLOG_uID-_Pic_fullsize-IMG_1500-R.jpg'
 }, {
   _id: userIds[3],
   username: 'Claire',
   email: 'c@c.com',
   password: 'pass',
-  image: 'https://i.pinimg.com/236x/8d/90/a9/8d90a954dd2cbd7b67ed7e5b4013c46e.jpg'
+  image: 'https://www.imaginefm.net/wp-content/uploads/2018/09/Claire-Foy.jpg'
 }];
 
 const tourData = [{

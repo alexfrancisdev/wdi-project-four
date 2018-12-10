@@ -9,7 +9,6 @@ class UserShow extends React.Component {
     this.state = {};
     this.handleFollow = this.handleFollow.bind(this);
     this.handleUnfollow = this.handleUnfollow.bind(this);
-    // this.goToUser = this.goToUser.bind(this);
   }
 
   componentDidMount() {
@@ -35,12 +34,6 @@ class UserShow extends React.Component {
     console.log('currentUserId ====>',currentUserId);
   }
 
-  // goToUser(e) {
-  //   const clickedUser = e.currentTarget.id;
-  //   console.log(clickedUser);
-  //   this.props.history.push(`/user/${clickedUser}`);
-  // }
-
   render() {
     const user = this.state.user;
     const currentUserId = tokenUserId();
@@ -50,14 +43,16 @@ class UserShow extends React.Component {
         {user
           ?
           <div className="centered-container">
-            <div className="columns is-centered is-mobile is-multiline">
-              <div className="column is-2">
-                <figure className="image is-48x48">
-                  <img src={user.image} className="is-rounded"/>
-                </figure>
+            <div>
+              <div className="columns is-centered is-mobile">
+                <div className="column is-4">
+                  <figure className="image is-1by1">
+                    <img src={user.image} className="is-rounded"/>
+                  </figure>
+                </div>
               </div>
 
-              <div className="has-text-centered column is-12">
+              <div className="has-text-centered">
                 <h1 className="title">{user.username}</h1>
                 {currentUserId === user._id
                   ?
@@ -93,18 +88,21 @@ class UserShow extends React.Component {
 
               {user && user.buildingsAdded.map(
                 building => <Link to={`/explore/${building._id}`} key={building._id}>
-                  <div className="box columns is-mobile is-gapless">
-                    <figure className="image column is-4">
-                      <img src={building.icon} />
-                    </figure>
-                    <div className="column is-8">
-                      <p className="subtitle is-size-5-mobile">{building.name}</p>
-                      <p className="subtitle is-size-7-mobile">{building.architect}</p>
+                  <div className="filteredBuilding-box columns is-mobile">
+                    <div className="column is-one-quarter">
+                      <figure className="image is-1by1">
+                        <img src={building.icon}/>
+                      </figure>
+                    </div>
+                    <div className="column is-three-quarters">
+                      <p className="is-size-6-mobile">{building.name}</p>
+                      <p className="is-size-7-mobile">{building.architect}</p>
                     </div>
                   </div>
                 </Link>
               )}
             </div>
+
             <div>
               {currentUserId === user._id
                 ?
@@ -113,16 +111,23 @@ class UserShow extends React.Component {
                     ?
                     <div>
                       <h1 className="user-subtitle is-size-5-mobile">Following</h1>
-                      {user.following && user.following.map(
-                        user =>
-                          <div  key={user._id}>
-                            <Link id={user._id} to={`/user/${user._id}`}><p className="is-size-7-mobile">{user.username}</p></Link>
-                          </div>
-                      )}
+                      <div className="box">
+                        {user.following && user.following.map(
+                          user =>
+                            <div  key={user._id} className="columns is-mobile">
+                              <div className="column is-2">
+                                <figure className="image is-1by1">
+                                  <img className="is-rounded" src={user.image}/>
+                                </figure>
+                              </div>
+                              <Link id={user._id} to={`/user/${user._id}`} className="column is-10"><p className="is-size-6-mobile">{user.username}</p></Link>
+                            </div>
+                        )}
+                      </div>
+                      <br/>
                     </div>
                     :
                     <p></p>}
-
                 </div>
                 :
                 <div></div>}
