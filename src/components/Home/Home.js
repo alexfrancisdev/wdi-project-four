@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+// import HomeMap from './HomeMap';
 import HomeMap from './HomeMap';
 
 class Home extends React.Component {
@@ -13,13 +14,6 @@ class Home extends React.Component {
     this.getBuildings = this.getBuildings.bind(this);
 
   }
-
-  // addMap(map) {
-  //   L.tileLayer.provider('MapBox', {
-  //     id: 'sophiabarclay.light-v9',
-  //     accessToken: 'pk.eyJ1Ijoic29waGlhYmFyY2xheSIsImEiOiJjanBoaDBicXcwdHl0M2tvemNyenRnNmlrIn0.OYZzci0qTG9rB9BcS-Y0hw'
-  //   }).addTo(map);
-  // }
 
   getLocation(pos) {
     this.setState({ userPosition: [pos.coords.latitude, pos.coords.longitude]}, () => {
