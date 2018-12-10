@@ -48,7 +48,6 @@ class Explore extends React.Component {
           </form>
         </div>
         <div className="centered-container">
-          <hr/>
           <div>
             {this.state.query === ''
               ?

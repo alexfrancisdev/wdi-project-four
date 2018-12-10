@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { tokenUserId, authorizationHeader } from '../../lib/auth';
 
 
@@ -105,7 +106,7 @@ class Show extends React.Component {
                   {building.featuredOn && building.featuredOn.map(
                     tour =>
                       <div key={tour._id}>
-                        <p className="is-size-7-mobile"><strong>{tour.name}</strong>: {tour.description}</p>
+                        <Link id={tour._id} to={`/tours/${tour._id}`} className="is-size-7-mobile"><strong>{tour.name}</strong>: {tour.description}</Link>
                       </div>
                   )}
                 </div>

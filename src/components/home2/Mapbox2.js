@@ -1,4 +1,3 @@
-
 import React from 'react';
 import MapGL, {NavigationControl} from 'react-map-gl';
 const TOKEN = 'pk.eyJ1Ijoic29waGlhYmFyY2xheSIsImEiOiJjanBoaDBicXcwdHl0M2tvemNyenRnNmlrIn0.OYZzci0qTG9rB9BcS-Y0hw';

@@ -30,8 +30,6 @@ class UserShow extends React.Component {
     followedBy.splice(followedBy.indexOf(currentUserId), 1);
     this.setState({ followedBy: followedBy });
     axios.post(`/api/users/${this.props.match.params.id}/unfollow`, this.state, authorizationHeader());
-    console.log('this.state.user.followedBy', this.state.user.followedBy);
-    console.log('currentUserId ====>',currentUserId);
   }
 
   render() {
@@ -47,7 +45,7 @@ class UserShow extends React.Component {
               <div className="columns is-centered is-mobile">
                 <div className="column is-4">
                   <figure className="image is-1by1">
-                    <img src={user.image} className="is-rounded"/>
+                    <img src={user.image} className="is-rounded profile-image"/>
                   </figure>
                 </div>
               </div>
