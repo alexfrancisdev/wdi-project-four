@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import BuildingBox from './TourBox';
+import TourBox from './TourBox';
 
 class TourIndex extends React.Component {
   constructor(props) {
@@ -9,6 +9,7 @@ class TourIndex extends React.Component {
       query: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.checkState = this.checkState.bind(this);
   }
 
   handleInputChange() {
@@ -19,16 +20,22 @@ class TourIndex extends React.Component {
     const tours = this.state.tours;
     const query = this.state.query;
     filteredTours = tours.filter(tour =>
-      tour.name.toLowerCase().startsWith(query.toLowerCase())
+      tour.name.includes(query.toLowerCase())
     );
+    console.log('state ==>', this.state);
     this.setState({ filteredTours: filteredTours });
+  }
+
+  checkState(){
+    console.log('state is----', this.state);
   }
 
   componentDidMount() {
     axios
       .get('/api/tours')
-      .then(result => this.setState({ tours: result.data, filteredTours: result.data }));
+      .then(result => this.setState({ tours: result.data, filteredTours: result.data }, this.checkState));
   }
+
 
   render() {
     return (
@@ -47,13 +54,16 @@ class TourIndex extends React.Component {
         <hr/>
         <div>
           <h1 className="subtitle">Results</h1>
-          <div>
-            {this.state.filteredTours && this.state.filteredTours.map(
-              filteredTour => <p key={filteredTour._id} filteredTour={filteredTour} className="is-size-5-mobile">
-                {filteredTour.name}
-              </p>
-            )}
-          </div>
+          {this.state.filteredTours
+            ?
+            <div>
+              {this.state.filteredTours && this.state.filteredTours.map(
+                filteredTour => <TourBox key={filteredTour._id} filteredTour={filteredTour}/>
+              )}
+            </div>
+            :
+            <p>Please wait....</p>
+          }
         </div>
       </section>
     );

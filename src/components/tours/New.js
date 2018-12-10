@@ -82,7 +82,6 @@ class NewTour extends React.Component {
     event.preventDefault();
     axios.post('/api/tours', this.state, authorizationHeader())
       .then(result => {
-        console.log('new tour is', result);
         this.props.history.push(`/tours/${ result.data._id }`);
       });
   }
@@ -110,12 +109,6 @@ class NewTour extends React.Component {
             </div>
           </div>
           <div className="field">
-            <label className="label">Pick an Icon</label>
-            <div className="control">
-              <input onChange={this.handleChange} value={this.state.icon || ''} name="icon" className="input" type="text" placeholder="Image URL" />
-            </div>
-          </div>
-          <div className="field">
             <label className="label">Buildings</label>
           </div>
           <div>
@@ -132,7 +125,7 @@ class NewTour extends React.Component {
               placeholder="Search..."
               ref={input => this.search = input}
               onChange={this.handleInputChange}
-              className="form-input is-size-5-mobile"
+              className="input"
             />
             <div className="centered-container">
 
