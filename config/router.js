@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const buildings = require('../controllers/buildings');
-const tours = require('../controllers/tours');
-const auth = require('../controllers/auth');
-const user = require('../controllers/user');
-// const attendees= require('../controllers/attendees');
+const buildings = require('../controllers/buildingsCtrl');
+const tours = require('../controllers/toursCtrl');
+const auth = require('../controllers/authCtrl');
+const user = require('../controllers/userCtrl');
+// const attendees= require('../controllers/attendeesCtrl');
 const jwt = require('jsonwebtoken');
 const { secret } = require('../config/environment');
 const User = require('../models/user');

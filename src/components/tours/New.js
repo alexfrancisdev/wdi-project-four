@@ -131,7 +131,7 @@ class NewTour extends React.Component {
               placeholder="Search..."
               ref={input => this.search = input}
               onChange={this.handleInputChange}
-              className="form-input"
+              className="form-input is-size-5-mobile"
             />
             <div className="centered-container">
 

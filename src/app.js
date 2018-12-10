@@ -12,7 +12,6 @@ import NewTour from './components/tours/New';
 import UserShow from './components/user/UserShow';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-
 import './scss/style.scss';
 import 'bulma';
 

@@ -32,15 +32,15 @@ class TourIndex extends React.Component {
 
   render() {
     return (
-      <section>
+      <section className="centered-container">
         <div>
-          <h1>Take a Tour</h1>
+          <h1 className="subtitle">Take a Tour</h1>
           <form>
             <input
               placeholder="Search for..."
               ref={input => this.search = input}
               onChange={this.handleInputChange}
-              className="form-input"
+              className="form-input is-size-5-mobile"
             />
           </form>
         </div>
@@ -49,7 +49,7 @@ class TourIndex extends React.Component {
           <h1 className="subtitle">Results</h1>
           <div>
             {this.state.filteredTours && this.state.filteredTours.map(
-              filteredTour => <p key={filteredTour._id} filteredTour={filteredTour}>
+              filteredTour => <p key={filteredTour._id} filteredTour={filteredTour} className="is-size-5-mobile">
                 {filteredTour.name}
               </p>
             )}

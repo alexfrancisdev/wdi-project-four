@@ -38,7 +38,6 @@ function follow(req, res, next) {
 }
 
 function unfollow(req, res, next) {
-  console.log('I\'ve seen enough!');
   User
     .findById(req.params.id)
     .then(user => {
