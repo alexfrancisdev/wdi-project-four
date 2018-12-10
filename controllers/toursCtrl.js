@@ -3,7 +3,7 @@ const Tour = require('../models/tour');
 function indexRoute(req, res, next) {
   Tour
     .find()
-    .populate('buildings')
+    .populate('createdBy buildings')
     .exec()
     .then(tours => res.json(tours))
     .catch(next);

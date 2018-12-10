@@ -109,12 +109,6 @@ class NewTour extends React.Component {
             </div>
           </div>
           <div className="field">
-            <label className="label">Pick an Icon</label>
-            <div className="control">
-              <input onChange={this.handleChange} value={this.state.icon || ''} name="icon" className="input" type="text" placeholder="Image URL" />
-            </div>
-          </div>
-          <div className="field">
             <label className="label">Buildings</label>
           </div>
           <div>
