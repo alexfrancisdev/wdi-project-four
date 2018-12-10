@@ -11,6 +11,9 @@ class NewTour extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addBuilding = this.addBuilding.bind(this);
+    this.selectedBuildings = this.selectedBuildings.bind(this);
+    this.filterBuildings = this.filterBuildings.bind(this);
+    this.removeBuilding = this.removeBuilding.bind(this);
   }
 
   componentDidMount() {
@@ -22,28 +25,57 @@ class NewTour extends React.Component {
   handleInputChange() {
     this.setState({
       query: this.search.value
-    });
+    }, this.filterBuildings);
+  }
+
+  filterBuildings(){
     let filteredBuildings = this.state.filteredBuildings;
     const buildings = this.state.buildingSearch;
     const query = this.state.query;
     filteredBuildings = buildings.filter(building =>
-      building.name.toLowerCase().startsWith(query.toLowerCase()) ||
-      building.architect.toLowerCase().startsWith(query.toLowerCase())
+      building.name.toLowerCase().includes(query.toLowerCase()) ||
+      building.architect.toLowerCase().includes(query.toLowerCase())
     );
     this.setState({ filteredBuildings: filteredBuildings });
   }
 
   addBuilding(event){
-    console.log('Running');
-    console.log(event.currentTarget.id);
     let originalBuildings = [];
+    const clicked = event.currentTarget.id;
     if (this.state.buildings){
-      originalBuildings = this.state.buildings;
+      originalBuildings = this.state.buildings.flat();
     }
-    let addedBuildings = [];
-    addedBuildings.push(event.currentTarget.id, originalBuildings.flat());
-    this.setState({ buildings: addedBuildings.flat() });
-    console.log('state is ', this.state);
+    const addedBuildings = [];
+    if (!originalBuildings.includes(clicked)){
+      addedBuildings.push(clicked, originalBuildings);
+      this.setState({ buildings: addedBuildings.flat(), query: ''}, this.selectedBuildings, console.log('state is', this.state) );
+    }
+  }
+
+  selectedBuildings(){
+    const selectedBuildings = [];
+    const buildings = this.state.buildingSearch;
+    const buildingIds = this.state.buildings;
+    for (var i = 0; i < buildingIds.length; i++) {
+      for (var x = 0; x < buildings.length; x++) {
+        if (buildings[x]._id === buildingIds[i]){
+          selectedBuildings.push(buildings[x]);
+          this.setState({ selectedBuildings: selectedBuildings });
+        }
+      }
+    }
+  }
+
+  removeBuilding(event){
+    let buildings = [];
+    const clicked = event.currentTarget.id;
+    buildings = this.state.buildings;
+    for(var i = buildings.length - 1; i >= 0; i--) {
+      if(buildings[i] === clicked) {
+        buildings.splice(i, 1);
+        this.setState({ buildings: buildings}, this.selectedBuildings);
+      }
+    }
   }
 
   handleSubmit(event){
@@ -84,13 +116,15 @@ class NewTour extends React.Component {
             </div>
           </div>
           <div className="field">
-            <label className="label">Building</label>
-            <div className="control">
-              <input onChange={this.handleChange} value={this.state.buildings || ''} name="buildings" className="input" type="text" placeholder="Building ID" />
-            </div>
+            <label className="label">Buildings</label>
           </div>
           <div>
-            <h1 className="label">Add a building</h1>
+            <div>
+              {this.state.selectedBuildings && this.state.selectedBuildings.map(
+                selectedBuilding =>
+                  <p onClick={this.removeBuilding} className="has-text-weight-light is-size-6" id={selectedBuilding._id} key={selectedBuilding._id}>{selectedBuilding.name}</p>
+              )}
+            </div>
             <div>
 
             </div>
