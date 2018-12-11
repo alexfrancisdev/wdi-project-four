@@ -81,17 +81,17 @@ class Home extends React.Component {
     if(!this.state.allBuildingsStatus) {
       filteredBuildings =  this.state.buildings;
     }
-    this.setState({ allBuildingsStatus: !this.state.allBuildingsStatus, filteredBuildings: filteredBuildings }), () => console.log('STATE', this.state);
+    this.setState({ allBuildingsStatus: !this.state.allBuildingsStatus, allBuildings: filteredBuildings }), () => console.log('STATE', this.state);
   }
 
   handleMyButtonToggle() {
     this.getMyBuildings();
-    this.setState({ myBuildingsStatus: !this.state.myBuildingsStatus, filteredBuildings: this.state.myBuildings }), () => console.log('STATE', this.state);
+    this.setState({ myBuildingsStatus: !this.state.myBuildingsStatus, myBuildings: this.state.myBuildings }), () => console.log('STATE', this.state);
   }
 
   handleLikedButtonToggle() {
     this.getLikedBuildings();
-    this.setState({ likedBuildingsStatus: !this.state.likedBuildingsStatus, filteredBuildings: this.state.likedBuildings }), () => console.log('STATE', this.state);
+    this.setState({ likedBuildingsStatus: !this.state.likedBuildingsStatus, likedBuildings: this.state.likedBuildings }), () => console.log('STATE', this.state);
   }
 
   componentDidMount() {
@@ -150,6 +150,9 @@ class Home extends React.Component {
             <HomeMap
               userPosition={this.state.userPosition}
               buildings={this.state.filteredBuildings}
+              allBuildings={this.state.allBuildings}
+              myBuildings={this.state.myBuildings}
+              likedBuildings={this.state.likedBuildings}
             />
           }
         </div>
