@@ -56,6 +56,7 @@ main {
 
 .fa-home:before, .fa-search:before, .fa-user:before, .fa-sign-out:before, .fa-link:before {
   font-size: 24px;
+
 }
 
 .fa-home:after, .fa-search:after, .fa-user:after, .fa-sign-out:after, .fa-link:after {
@@ -77,9 +78,14 @@ $fa-font-path: "~font-awesome/fonts";
 // Home
 .home-buttons {
   height: 5rem;
+  // .home-button-container input {
+  //   opacity: 0;
+  //   cursor: pointer;
+  //
+  // }
   .home-button-input {
     margin-right: 0.5rem;
-    border-style: none;
+
   }
 }
 

@@ -1,54 +1,101 @@
 import React from 'react';
 import axios from 'axios';
-// import { tokenUserId } from '../../lib/auth';
+import { tokenUserId } from '../../lib/auth';
 import HomeMap from './HomeMap';
+const currentUserId = tokenUserId();
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       userPosition: null,
-      allBuildingsStatus: true
+      allBuildingsStatus: true,
+      myBuildingsStatus: true,
+      likedBuildingsStatus: true
     };
     this.getLocation = this.getLocation.bind(this);
-    this.getBuildings = this.getBuildings.bind(this);
-    // this.getUser = this.getUser.bind(this);
-    this.handleButtonToggle = this.handleButtonToggle.bind(this);
+    this.getAllBuildings = this.getAllBuildings.bind(this);
+    this.getMyBuildings = this.getMyBuildings.bind(this);
+    this.getLikedBuildings = this.getLikedBuildings.bind(this);
+    this.getFollowedBuildings = this.getFollowedBuildings.bind(this);
+    this.handleAllButtonToggle = this.handleAllButtonToggle.bind(this);
+    this.handleMyButtonToggle = this.handleMyButtonToggle.bind(this);
+    this.handleLikedButtonToggle = this.handleLikedButtonToggle.bind(this);
   }
 
   getLocation(pos) {
     this.setState({ userPosition: [pos.coords.latitude, pos.coords.longitude]}, () => {
-      this.getBuildings();
+      this.getAllBuildings();
     });
   }
 
-  getBuildings() {
+  getAllBuildings() {
     axios.get('/api/buildings')
       .then(result => this.setState({ buildings: result.data, filteredBuildings: result.data }, () => {
         console.log('this is state, ', this.state);
-        // this.getUser();
       }));
   }
 
-  // Tuesday pick up from here
-  // getUser() {
-  //   const currentUserId = tokenUserId();
-  //   console.log('currentUserId', currentUserId);
-  //   axios.get(`/api/users/${currentUserId}`)
-  //     .then(res => this.setState({ user: res.data }), () => console.log('this.state', this.state));
-  // }
+  getMyBuildings() {
+    const myBuildings = [];
+    axios.get('/api/buildings')
+      .then(result => {
+        result.data.map(function(object) {
+          if(object.addedBy === currentUserId) {
+            myBuildings.push(object);
+          }
+        });
+        this.setState({ myBuildings: myBuildings});
+        console.log('state', this.state);
+      });
+  }
 
-  handleButtonToggle() {
+  getLikedBuildings() {
+    const likedBuildings = [];
+    axios.get('/api/buildings')
+      .then(result => {
+        result.data.map(function(object) {
+          if(object.likes.includes(currentUserId)) {
+            likedBuildings.push(object);
+          }
+        });
+        this.setState({ likedBuildings: likedBuildings}, () => console.log('STATE', this.state));
+      });
+  }
+
+  getFollowedBuildings() {
+    const followedBuildings = [];
+    axios.get('/api/users')
+      .then(result => {
+        result.data.map(function(object) {
+          if(object.likes.includes(currentUserId)) {
+            followedBuildings.push(object);
+          }
+        });
+        this.setState({ followedBuildings: followedBuildings}, () => console.log('STATE', this.state));
+      });
+  }
+
+  handleAllButtonToggle() {
     let filteredBuildings = [];
     if(!this.state.allBuildingsStatus) {
       filteredBuildings =  this.state.buildings;
     }
-    this.setState({ allBuildingsStatus: !this.state.allBuildingsStatus, filteredBuildings: filteredBuildings });
+    this.setState({ allBuildingsStatus: !this.state.allBuildingsStatus, filteredBuildings: filteredBuildings }), () => console.log('STATE', this.state);
+  }
+
+  handleMyButtonToggle() {
+    this.getMyBuildings();
+    this.setState({ myBuildingsStatus: !this.state.myBuildingsStatus, filteredBuildings: this.state.myBuildings }), () => console.log('STATE', this.state);
+  }
+
+  handleLikedButtonToggle() {
+    this.getLikedBuildings();
+    this.setState({ likedBuildingsStatus: !this.state.likedBuildingsStatus, filteredBuildings: this.state.likedBuildings }), () => console.log('STATE', this.state);
   }
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(this.getLocation, this.getBuildings);
-    // navigator.geolocation.getCurrentPosition(this.getLocation, this.getBuildings, this.getUser);
   }
 
   render() {
@@ -56,20 +103,43 @@ class Home extends React.Component {
       <section className="map-container">
         <div className="home-buttons centered-container ">
 
-          <form>
-            <label >
+          <form className="columns is-multiline is-mobile">
+            <label className="home-button-container column is-3">
+              <input
+                className="home-button-input"
+                name="myBuildings"
+                type="checkbox"
+                checked={this.state.myBuildingsStatus}
+                value="myBuildingsStatus"
+                onChange={this.handleMyButtonToggle}
+              />
+              <span className="is-size-6-mobile">My</span>
+            </label>
+
+            <label className="home-button-container column is-3">
+              <input
+                className="home-button-input"
+                name="likedBuildings"
+                type="checkbox"
+                checked={this.state.likedBuildingsStatus}
+                value="likedBuildingsStatus"
+                onChange={this.handleLikedButtonToggle}
+              />
+              <span className="is-size-6-mobile">Liked</span>
+            </label>
+
+            <label className="home-button-container column is-3">
               <input
                 className="home-button-input"
                 name="allBuildings"
                 type="checkbox"
                 checked={this.state.allBuildingsStatus}
                 value="allBuildingsStatus"
-                onChange={this.handleButtonToggle}
+                onChange={this.handleAllButtonToggle}
               />
-              <span className="is-size-5-mobile">All</span>
+              <span className="is-size-6-mobile">All</span>
             </label>
           </form>
-
 
         </div>
         <div className="box-container">
