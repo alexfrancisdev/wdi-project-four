@@ -8,4 +8,5 @@ global.expect = chai.expect;
 
 const supertest = require('supertest');
 const server = require('../../index');
+
 global.api = supertest(server);

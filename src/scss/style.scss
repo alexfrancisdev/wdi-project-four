@@ -54,7 +54,6 @@ main {
   height: 55px;
 }
 
-
 .fa-home:before, .fa-search:before, .fa-user:before, .fa-sign-out:before, .fa-link:before {
   font-size: 24px;
 }
@@ -75,7 +74,11 @@ main {
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome.scss";
 
-// Maps
+// Home
+.home-buttons {
+  height: 5rem;
+}
+
 $box-color: #fffeff;
 .box-container {
   display: flex;
