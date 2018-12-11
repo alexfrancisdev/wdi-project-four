@@ -2,60 +2,32 @@ import L from 'leaflet';
 
 import ExtraMarkers from './markers/js/leaflet.extra-markers.js';
 
+const redMarker = new L.ExtraMarkers.Icon({
+  icon: '',
+  markerColor: 'orange-dark',
+  shape: 'circle',
+  prefix: ''
+});
 
-const redMarkerNew = new L.ExtraMarkers.Icon({
-  icon: 'fa-praying-hands',
+const greenMarker = new L.ExtraMarkers.Icon({
+  icon: '',
   markerColor: 'green',
-  shape: 'star',
-  prefix: 'fas'
+  shape: 'circle',
+  prefix: ''
 });
 
-const redMarker = new L.Icon({
-  iconUrl: require('../assets/icons/icon-red.png'),
-  iconRetinaUrl: require('../assets/icons/icon-red.png'),
-  iconAnchor: null,
-  popupAnchor: [0, -20],
-  shadowUrl: null,
-  shadowSize: null,
-  shadowAnchor: null,
-  iconSize: new L.Point(25, 41),
-  className: 'leaflet-marker-icon leaflet-zoom-animated leaflet-interactive'
+const yellowMarker = new L.ExtraMarkers.Icon({
+  icon: '',
+  markerColor: 'yellow',
+  shape: 'circle',
+  prefix: ''
 });
 
-const greenMarker = new L.Icon({
-  iconUrl: require('../assets/icons/icon-green.png'),
-  iconRetinaUrl: require('../assets/icons/icon-green.png'),
-  iconAnchor: null,
-  popupAnchor: [0, -20],
-  shadowUrl: null,
-  shadowSize: null,
-  shadowAnchor: null,
-  iconSize: new L.Point(25, 41),
-  className: 'leaflet-marker-icon leaflet-zoom-animated leaflet-interactive'
-});
-
-const pinkMarker = new L.Icon({
-  iconUrl: require('../assets/icons/icon-green.png'),
-  iconRetinaUrl: require('../assets/icons/icon-green.png'),
-  iconAnchor: null,
-  popupAnchor: [0, -20],
-  shadowUrl: null,
-  shadowSize: null,
-  shadowAnchor: null,
-  iconSize: new L.Point(25, 41),
-  className: 'leaflet-marker-icon leaflet-zoom-animated leaflet-interactive'
-});
-
-const purpleMarker = new L.Icon({
-  iconUrl: require('../assets/icons/icon-green.png'),
-  iconRetinaUrl: require('../assets/icons/icon-green.png'),
-  iconAnchor: null,
-  popupAnchor: [0, -20],
-  shadowUrl: null,
-  shadowSize: null,
-  shadowAnchor: null,
-  iconSize: new L.Point(25, 41),
-  className: 'leaflet-marker-icon leaflet-zoom-animated leaflet-interactive'
+const blueMarker = new L.ExtraMarkers.Icon({
+  icon: '',
+  markerColor: 'cyan',
+  shape: 'circle',
+  prefix: ''
 });
 
 const userMarker = new L.Icon({
@@ -71,4 +43,4 @@ const userMarker = new L.Icon({
   className: 'leaflet-marker-icon leaflet-zoom-animated leaflet-interactive'
 });
 
-export { redMarker, greenMarker, pinkMarker, purpleMarker, userMarker, redMarkerNew };
+export { redMarker, greenMarker, yellowMarker, blueMarker, userMarker };
