@@ -80,6 +80,7 @@ $box-color: #fffeff;
 .box-container {
   display: flex;
   flex-wrap: wrap;
+  // BURGER BOX!!!
   .burger-box {
     display: flex;
     flex-direction: column;
@@ -98,6 +99,11 @@ $box-color: #fffeff;
 }
 
 #map {
+  height: 549px;
+  width: 100%;
+}
+
+#map2 {
   height: 549px;
   width: 100%;
 }
@@ -130,4 +136,9 @@ $box-color: #fffeff;
       }
     }
   }
+}
+
+// user show
+.profile-image {
+  margin-top: 0.7rem;
 }

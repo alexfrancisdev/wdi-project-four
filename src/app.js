@@ -13,7 +13,7 @@ import TourShow from './components/tours/Show';
 import UserShow from './components/user/UserShow';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-// import Mapbox from './components/home/Mapbox';
+// import Mapbox from './components/home2/Home2';
 import './scss/style.scss';
 import 'bulma';
 
