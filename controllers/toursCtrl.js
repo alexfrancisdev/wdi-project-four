@@ -12,7 +12,7 @@ function indexRoute(req, res, next) {
 function showRoute(req, res, next) {
   Tour
     .findById(req.params.id)
-    .populate('createdBy buildings')
+    .populate('createdBy buildings comments.user')
     .exec()
     .then(tour => res.json(tour))
     .catch(next);
@@ -50,7 +50,7 @@ function commentCreateRoute(req, res, next) {
   req.body.user = req.currentUser;
   Tour
     .findById(req.params.id)
-    .populate('comments.user')
+    .populate('createdBy buildings comments.user')
     .exec()
     .then(tour => {
       tour.comments.push(req.body);
@@ -63,7 +63,7 @@ function commentCreateRoute(req, res, next) {
 function commentDeleteRoute(req, res, next) {
   Tour
     .findById(req.params.id)
-    .populate('comments.user')
+    .populate('createdBy buildings comments.user')
     .then(tour => {
       const comment = tour.comments.id(req.params.commentId);
       console.log('=======> MADE IT!!!!!', comment.user._id);

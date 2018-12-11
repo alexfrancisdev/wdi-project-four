@@ -48,10 +48,12 @@ function deleteRoute(req, res, next) {
 }
 
 function commentCreateRoute(req, res, next) {
+  console.log('req.body', req.body);
   req.body.user = req.currentUser;
+  console.log('req.body', req.body);
   Building
     .findById(req.params.id)
-    .populate('comments.user')
+    .populate('comments.user addedBy featuredOn')
     .exec()
     .then(building => {
       building.comments.push(req.body);
@@ -64,7 +66,7 @@ function commentCreateRoute(req, res, next) {
 function commentDeleteRoute(req, res, next) {
   Building
     .findById(req.params.id)
-    .populate('comments.user')
+    .populate('comments.user addedBy featuredOn')
     .then(building => {
       const comment = building.comments.id(req.params.commentId);
       console.log('=======> MADE IT!!!!!', comment.user._id);

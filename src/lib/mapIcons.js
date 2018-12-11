@@ -3,9 +3,9 @@ import L from 'leaflet';
 import ExtraMarkers from './markers/js/leaflet.extra-markers.js';
 
 const redMarkerNew = new L.ExtraMarkers.Icon({
-  icon: 'fa-landmark',
-  markerColor: 'blue',
-  shape: 'square',
+  icon: 'fa-praying-hands',
+  markerColor: 'green',
+  shape: 'star',
   prefix: 'fas'
 });
 
@@ -60,6 +60,7 @@ const purpleMarker = new L.Icon({
 const userMarker = new L.Icon({
   iconUrl: require('../assets/icons/user-icon.png'),
   iconRetinaUrl: require('../assets/icons/user-icon.png'),
+  fillOpacity: 0.5,
   iconAnchor: null,
   popupAnchor: [0, -5],
   shadowUrl: null,
