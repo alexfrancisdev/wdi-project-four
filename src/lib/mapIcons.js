@@ -1,5 +1,14 @@
 import L from 'leaflet';
 
+import ExtraMarkers from './markers/js/leaflet.extra-markers.js';
+
+const redMarkerNew = new L.ExtraMarkers.Icon({
+  icon: 'fa-landmark',
+  markerColor: 'blue',
+  shape: 'square',
+  prefix: 'fas'
+});
+
 const redMarker = new L.Icon({
   iconUrl: require('../assets/icons/icon-red.png'),
   iconRetinaUrl: require('../assets/icons/icon-red.png'),
@@ -60,4 +69,4 @@ const userMarker = new L.Icon({
   className: 'leaflet-marker-icon leaflet-zoom-animated leaflet-interactive'
 });
 
-export { redMarker, greenMarker, pinkMarker, purpleMarker, userMarker };
+export { redMarker, greenMarker, pinkMarker, purpleMarker, userMarker, redMarkerNew };
