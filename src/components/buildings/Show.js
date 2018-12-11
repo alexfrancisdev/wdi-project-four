@@ -22,6 +22,7 @@ class Show extends React.Component {
   handleLike() {
     const currentUserId = tokenUserId();
     const likes = this.state.building.likes;
+    console.log('STATE', this.state.building);
     likes.push(currentUserId);
     this.setState({ likes: likes });
     axios.post(`/api/buildings/${this.props.match.params.id}/like`, this.state, authorizationHeader());
