@@ -11,6 +11,8 @@ class Show extends React.Component {
     this.handleAddedByClick = this.handleAddedByClick.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.handleUnlike = this.handleUnlike.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleAddedByClick() {
@@ -34,9 +36,6 @@ class Show extends React.Component {
     likes.splice(likes.indexOf(currentUserId), 1);
     this.setState({ likes: likes });
     axios.post(`/api/buildings/${this.props.match.params.id}/unlike`, this.state, authorizationHeader());
-    console.log('this.state', this.state);
-    console.log('currentUserId ====>',currentUserId);
-    console.log('this.state', this.state.building.likes);
   }
 
   componentDidMount() {
@@ -45,8 +44,21 @@ class Show extends React.Component {
       .then(result => this.setState({ building: result.data }));
   }
 
+  handleSubmit(event){
+    event.preventDefault();
+    axios.post(`/api/buildings/${this.props.match.params.id}/comments`, this.state, authorizationHeader())
+      .then(res => this.setState({ content: '', building: res.data }));
+  }
+
+  handleChange({ target: { name, value }}){
+    this.setState({ [name]: value });
+    console.log('this is the state', this.state);
+  }
+
+
+
   render() {
-    console.log('this.state.building =====>', this.state.building);
+    console.log('RENDER');
     const building = this.state.building;
     return(
       <div className="centered-container">
@@ -97,6 +109,10 @@ class Show extends React.Component {
                 <div className="has-text-centered">
                   <p className="column is-11 is-size-7-mobile">There are no comments on this building.</p>
                 </div>}
+              <hr/>
+              <form onSubmit={this.handleSubmit}>
+                <input className="input" onChange={this.handleChange} value={this.state.content || ''} name="content" placeholder="Add a comment..."/>
+              </form>
             </div>
             <hr/>
             <div>

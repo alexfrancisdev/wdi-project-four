@@ -15,6 +15,8 @@ class Show extends React.Component {
     this.handleLike = this.handleLike.bind(this);
     this.handleUnlike = this.handleUnlike.bind(this);
     this.getLocation = this.getLocation.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   getLocation(pos) {
@@ -40,6 +42,17 @@ class Show extends React.Component {
     likes.splice(likes.indexOf(currentUserId), 1);
     this.setState({ likes: likes });
     axios.post(`/api/tours/${this.props.match.params.id}/unlike`, this.state, authorizationHeader());
+  }
+
+  handleSubmit(event){
+    event.preventDefault();
+    axios.post(`/api/tours/${this.props.match.params.id}/comments`, this.state, authorizationHeader())
+      .then(res => this.setState({ content: '', tour: res.data }));
+  }
+
+  handleChange({ target: { name, value }}){
+    this.setState({ [name]: value });
+    console.log('this is the state', this.state);
   }
 
   componentDidMount() {
@@ -118,6 +131,10 @@ class Show extends React.Component {
                 <div className="has-text-centered">
                   <p className="column is-11 is-size-7-mobile">There are no comments on this tour.</p>
                 </div>}
+              <hr/>
+              <form onSubmit={this.handleSubmit}>
+                <input className="input" onChange={this.handleChange} value={this.state.content || ''} name="content" placeholder="Add a comment..."/>
+              </form>
             </div>
             <hr/>
             <div>
