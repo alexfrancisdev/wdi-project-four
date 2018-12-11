@@ -83,6 +83,24 @@ $fa-font-path: "~font-awesome/fonts";
   }
 }
 
+.popup {
+  width: 20vh;
+  height:auto;
+  text-align: center;
+  color: #4a4a4a;
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  p {
+    margin: 5px;
+  }
+}
+
+.popun:hover {
+  background-color: rgba(0, 0, 0, 0.28);
+}
+
 $box-color: #fffeff;
 .box-container {
   display: flex;

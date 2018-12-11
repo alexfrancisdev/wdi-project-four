@@ -1,7 +1,7 @@
 import React from 'react';
 import { Map, TileLayer, Marker, Popup} from 'react-leaflet';
 import { Link } from 'react-router-dom';
-import { redMarkerNew, userMarker } from '../../lib/mapIcons';
+import { redMarker, userMarker } from '../../lib/mapIcons';
 
 
 
@@ -20,12 +20,14 @@ const HomeMap = ({ userPosition, buildings }) => {
           </Popup>
         </Marker>}
         {buildings && buildings.map(building =>
-          <Marker icon={ redMarkerNew } key={building._id} position={[building.location.lat, building.location.lng]}>
+          <Marker icon={ redMarker } key={building._id} position={[building.location.lat, building.location.lng]}>
             <Popup>
               <Link to={`/explore/${building._id}`}>
-                <h2>{building.name}</h2>
-                <img src={building.icon}/>
-                <p>test</p>
+                <div className="popup">
+                  <h2>{building.name}</h2>
+                  <img src={building.icon}/>
+                  <p>{building.architect}</p>
+                </div>
               </Link>
             </Popup>
           </Marker>
