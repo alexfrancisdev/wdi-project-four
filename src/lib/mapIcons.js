@@ -2,6 +2,7 @@ import L from 'leaflet';
 
 import ExtraMarkers from './markers/js/leaflet.extra-markers.js';
 
+
 const redMarkerNew = new L.ExtraMarkers.Icon({
   icon: 'fa-praying-hands',
   markerColor: 'green',
