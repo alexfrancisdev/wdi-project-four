@@ -108,7 +108,7 @@ class Show extends React.Component {
                 </div>
                 :
                 <div className="has-text-centered">
-                  <p className="column is-11 is-size-7-mobile">There are no comments on this building.</p>
+                  <p className="column is-11 is-size-6-mobile">There are no comments on this building.</p>
                 </div>}
               <hr/>
               <form onSubmit={this.handleSubmit}>

@@ -2,15 +2,170 @@ $box-color: #fffeff;
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome.scss";
 
+
+// COMMON
+* {
+  font-size: 42px;
+}
+
+.is-vertical-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 a {
   color: #4A4A4A;
 }
 
-a:hover {
-  color: #8C8C8C;
+h2 {
+  margin: 1rem 0;
+}
+
+h3 {
+  margin: 0.5rem 0;
+}
+
+img {
+  object-fit: cover;
+}
+
+.centered-container {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+
+.centered-container-plus {
+  margin-top: 1rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+// SECTIONS
+.container {
+  height: 100%;
+  main {
+    height: 84vh;
+    overflow: scroll;
+  }
+}
+
+.header {
+  height: 25%;
+  .logo {
+    font-family: 'Pacifico', cursive;
+    padding: 0.5rem 1rem;
+  }
+}
+
+.navbar {
+  height: 5%;
+  box-shadow: 0px 0px 15px rgba(0,0,0,.2);
+  .navbar-brand {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    .navbar-item {
+      i {
+        font-size: 1.3em;
+      }
+    }
+  }
+}
+
+.fa-home:before, .fa-search:before, .fa-plus:before, .fa-user:before, .fa-sign-out:before, .fa-link:before {
+  font-size: 24px;
+}
+
+.fa-home:after, .fa-search:after, .fa-plus:after, .fa-user:after, .fa-sign-out:after, .fa-link:after {
+  font-size: 34px;
 }
 
 
+// USER SHOW
+.user-subtitle {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.profile-image {
+  margin-top: 0.7rem;
+}
+
+
+// EXPLORE
+.explore-title {
+  margin-bottom: 1rem;
+}
+
+form {
+  margin-top: -1rem;
+}
+
+
+// HOME
+
+.map-container {
+  .home-buttons-container {
+    height: 20%;
+    margin-bottom: 1rem;
+    .home-buttons-label {
+      line-height: 1.25rem;
+      // height: 1rem;
+      padding-bottom: 0.5rem;
+      // vertical-align: center;
+      // margin-top: 0.75rem;
+    }
+    .home-buttons-label:last-child {
+      margin-bottom: 1.5rem;
+    }
+    .home-button-label input {
+      outline: none;
+    }
+    .home-button-input {
+      margin-right: 0.5rem;
+      margin-left: 1rem;
+    }
+  }
+  .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    .leaflet-container {
+      width: 100%;
+      height: 65%;
+    }
+
+    .map-container {
+      padding: 0;
+    }
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+  }
+}
+
+.popup {
+  width: 20vh;
+  height:auto;
+  text-align: center;
+  color: #4a4a4a;
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  p {
+    margin: 5px;
+  }
+}
+
+.popun:hover {
+  background-color: rgba(0, 0, 0, 0.28);
+}
+
+// HOME CHECKBOXES
 div[class^="ckbx-style-"] input[type=checkbox] {
   position: absolute;
   opacity: 0;
@@ -79,156 +234,7 @@ div[class^="ckbx-style-"] input[type=checkbox] {
   left: 0.55em;
 }
 
-
-// COMMON
-* {
-  font-size: 42px;
-}
-
-.is-vertical-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-img {
-  object-fit: cover;
-}
-
-.centered-container {
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
-}
-
-.centered-container-plus {
-  margin-top: 1rem;
-  margin-left: 3rem;
-  margin-right: 3rem;
-}
-
-// SECTIONS
-.container {
-  height: 100%;
-  main {
-    height: 90%;
-    overflow: scroll;
-  }
-}
-
-.header {
-  height: 25%;
-  .logo {
-    font-family: 'Pacifico', cursive;
-    padding: 0.5rem 1rem;
-  }
-}
-
-.navbar {
-  height: 5%;
-}
-
-.navbar-brand {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-around;
-}
-
-
-.fa-home:before, .fa-search:before, .fa-plus:before, .fa-user:before, .fa-sign-out:before, .fa-link:before {
-  font-size: 24px;
-
-}
-
-.fa-home:after, .fa-search:after, .fa-plus:after, .fa-user:after, .fa-sign-out:after, .fa-link:after {
-  font-size: 34px;
-}
-
-
-// USER SHOW
-.user-subtitle {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 // EXPLORE
-.explore-title {
-  margin-bottom: 1rem;
-}
-
-form {
-  margin-top: -1rem;
-}
-
-
-// HOME
-
-.map-container {
-  .home-buttons-container {
-    height: 20%;
-    .home-buttons-label {
-      line-height: 1.25rem;
-      // height: 1rem;
-      padding-bottom: 0.5rem;
-      // vertical-align: center;
-      // margin-top: 0.75rem;
-    }
-    .home-buttons-label:last-child {
-      margin-bottom: 1.5rem;
-    }
-    .home-button-label input {
-      outline: none;
-    }
-    .home-button-input {
-      margin-right: 0.5rem;
-      margin-left: 1rem;
-    }
-  }
-  .box-container {
-    display: flex;
-    flex-wrap: wrap;
-    .leaflet-container {
-      width: 100%;
-      height: 72%;
-    }
-
-    .map-container {
-      padding: 0;
-    }
-    #map {
-      height: 100vh;
-      width: 100%;
-    }
-  }
-}
-
-.popup {
-  width: 20vh;
-  height:auto;
-  text-align: center;
-  color: #4a4a4a;
-  h2 {
-    font-size: 20px;
-    font-weight: 600;
-  }
-  p {
-    margin: 5px;
-  }
-}
-
-.popun:hover {
-  background-color: rgba(0, 0, 0, 0.28);
-}
-
-
-
-
-
-
-
-
-// Explore
 
 .form-input {
   outline: none;
@@ -247,9 +253,4 @@ form {
       }
     }
   }
-}
-
-// user show
-.profile-image {
-  margin-top: 0.7rem;
 }

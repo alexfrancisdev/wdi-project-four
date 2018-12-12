@@ -119,82 +119,29 @@ class Home extends React.Component {
     return (
       <section className="map-container">
         <div className="home-buttons-container centered-container">
+          <h2 className="is-size-5">Show buildings:</h2>
           <div className="columns is-mobile">
             <div className="column is-3 ckbx-style-8 mine-switch">
               <input type="checkbox" id="ckbx-style-8-1" value="1" name="ckbx-style-8" checked={this.state.myBuildingsStatus} onChange={this.handleMyButtonToggle}/>
               <label htmlFor="ckbx-style-8-1"></label>
-              <p className="is-size-6-mobile">Mine</p>
+              <h3 className="is-size-6-mobile">Mine</h3>
             </div>
             <div className="column is-3 ckbx-style-8 liked-switch">
               <input type="checkbox" id="ckbx-style-8-2" value="1" name="ckbx-style-8" checked={this.state.likedBuildingsStatus} onChange={this.handleLikedButtonToggle}/>
               <label htmlFor="ckbx-style-8-2"></label>
-              <p className="is-size-6-mobile">Liked</p>
+              <h3 className="is-size-6-mobile">Liked</h3>
             </div>
             <div className="column is-3 ckbx-style-8 followed-switch">
               <input type="checkbox" id="ckbx-style-8-3" value="1" name="ckbx-style-8" checked={this.state.followedBuildingsStatus} onChange={this.handleFollowedButtonToggle}/>
               <label htmlFor="ckbx-style-8-3"></label>
-              <p className="is-size-6-mobile">Followed</p>
+              <h3 className="is-size-6-mobile">Followed</h3>
             </div>
             <div className="column is-3 ckbx-style-8 all-switch">
               <input type="checkbox" id="ckbx-style-8-4" value="1" name="ckbx-style-8" checked={this.state.allBuildingsStatus} onChange={this.handleAllButtonToggle}/>
               <label htmlFor="ckbx-style-8-4"></label>
-              <p className="is-size-6-mobile">All</p>
+              <h3 className="is-size-6-mobile">All</h3>
             </div>
           </div>
-          {/* <div className="ckbx-style-8">
-            <input type="checkbox" id="ckbx-style-8-1" value="0" name="ckbx-style-8"/>
-            <label htmlFor="ckbx-style-8-1"></label>
-          </div> */}
-          {/* <form className="columns is-multiline is-mobile">
-            <label className="home-buttons-label column is-6-mobile is-3-desktop">
-              <input
-                className="home-button-input"
-                // name="myBuildings"
-                type="checkbox"
-                checked={this.state.myBuildingsStatus}
-                value="myBuildingsStatus"
-                onChange={this.handleMyButtonToggle}
-              />
-              <span className="is-size-6-mobile is-size-5-desktop">My Buildings</span>
-            </label>
-
-            <label className="home-buttons-label column is-6-mobile is-3-desktop">
-              <input
-                className="home-button-input"
-                name="likedBuildings"
-                type="checkbox"
-                checked={this.state.likedBuildingsStatus}
-                value="likedBuildingsStatus"
-                onChange={this.handleLikedButtonToggle}
-              />
-              <span className="is-size-6-mobile is-size-5-desktop">Liked Buildings</span>
-            </label>
-
-            <label className="home-buttons-label column is-6-mobile is-3-desktop">
-              <input
-                className="home-button-input"
-                name="followedBuildings"
-                type="checkbox"
-                checked={this.state.followedBuildingsStatus}
-                value="followedBuildingsStatus"
-                onChange={this.handleFollowedButtonToggle}
-              />
-              <span className="is-size-6-mobile is-size-5-desktop">Followed</span>
-            </label>
-
-            <label className="home-buttons-label column is-6-mobile is-3-desktop">
-              <input
-                className="home-button-input"
-                name="allBuildings"
-                type="checkbox"
-                checked={this.state.allBuildingsStatus}
-                value="allBuildingsStatus"
-                onChange={this.handleAllButtonToggle}
-              />
-              <span className="is-size-6-mobile is-size-5-desktop">All Buildings</span>
-            </label>
-
-          </form> */}
 
         </div>
         <div className="box-container">
