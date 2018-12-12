@@ -22,12 +22,7 @@ class TourIndex extends React.Component {
     filteredTours = tours.filter(tour =>
       tour.name.includes(query.toLowerCase())
     );
-    console.log('state ==>', this.state);
     this.setState({ filteredTours: filteredTours });
-  }
-
-  checkState(){
-    console.log('state is----', this.state);
   }
 
   componentDidMount() {

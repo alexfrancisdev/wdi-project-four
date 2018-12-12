@@ -48,7 +48,7 @@ class NewTour extends React.Component {
     const addedBuildings = [];
     if (!originalBuildings.includes(clicked)){
       addedBuildings.push(clicked, originalBuildings);
-      this.setState({ buildings: addedBuildings.flat(), query: ''}, this.selectedBuildings, console.log('state is', this.state) );
+      this.setState({ buildings: addedBuildings.flat(), query: ''}, this.selectedBuildings);
     }
   }
 

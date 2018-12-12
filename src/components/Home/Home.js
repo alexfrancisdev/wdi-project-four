@@ -32,14 +32,12 @@ class Home extends React.Component {
   getAllBuildings() {
     axios.get('/api/buildings')
       .then(result => this.setState({ buildings: result.data, filteredBuildings: result.data }, () => {
-        console.log('this is state, ', this.state);
       }));
   }
 
   getMyBuildings() {
     const myBuildings = [];
     axios.get('/api/buildings')
-      // .then(result => console.log('result.data!!!!!', result.data, currentUserId))
       .then(result => {
         result.data.map(function(object) {
           if(object.addedBy === currentUserId) {
@@ -59,7 +57,7 @@ class Home extends React.Component {
             likedBuildings.push(object);
           }
         });
-        this.setState({ likedBuildings: likedBuildings}, () => console.log('STATE', this.state));
+        this.setState({ likedBuildings: likedBuildings});
       });
   }
 
@@ -72,7 +70,7 @@ class Home extends React.Component {
   //           followedBuildings.push(object);
   //         }
   //       });
-  //       this.setState({ followedBuildings: followedBuildings}, () => console.log('STATE', this.state));
+  //       this.setState({ followedBuildings: followedBuildings});
   //     });
   // }
 
@@ -81,7 +79,7 @@ class Home extends React.Component {
     if(!this.state.allBuildingsStatus) {
       filteredBuildings =  this.state.buildings;
     }
-    this.setState({ allBuildingsStatus: !this.state.allBuildingsStatus, allBuildings: filteredBuildings }), () => console.log('STATE', this.state);
+    this.setState({ allBuildingsStatus: !this.state.allBuildingsStatus, allBuildings: filteredBuildings });
   }
 
   handleMyButtonToggle() {
@@ -90,12 +88,12 @@ class Home extends React.Component {
     if(!this.state.myBuildingsStatus) {
       myBuildings =  this.state.myBuildings;
     }
-    this.setState({ myBuildingsStatus: !this.state.myBuildingsStatus, myBuildings: this.state.myBuildings }), () => console.log('STATE', this.state);
+    this.setState({ myBuildingsStatus: !this.state.myBuildingsStatus, myBuildings: this.state.myBuildings });
   }
 
   handleLikedButtonToggle() {
     this.getLikedBuildings();
-    this.setState({ likedBuildingsStatus: !this.state.likedBuildingsStatus, likedBuildings: this.state.likedBuildings }), () => console.log('STATE', this.state);
+    this.setState({ likedBuildingsStatus: !this.state.likedBuildingsStatus, likedBuildings: this.state.likedBuildings });
   }
 
   componentDidMount() {

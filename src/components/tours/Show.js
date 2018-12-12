@@ -52,7 +52,6 @@ class Show extends React.Component {
 
   handleChange({ target: { name, value }}){
     this.setState({ [name]: value });
-    console.log('this is the state', this.state);
   }
 
   componentDidMount() {

@@ -13,7 +13,6 @@ class Navbar extends React.Component {
 
   handleLogout() {
     deleteToken();
-    console.log('---->', this.props);
     this.props.history.push('/login');
   }
   render() {

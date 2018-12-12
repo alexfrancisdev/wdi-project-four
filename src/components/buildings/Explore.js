@@ -22,7 +22,6 @@ class Explore extends React.Component {
       building.name.toLowerCase().startsWith(query.toLowerCase()) ||
       building.architect.toLowerCase().startsWith(query.toLowerCase())
     );
-    console.log('state ==>', this.state);
     this.setState({ filteredBuildings: filteredBuildings });
   }
 
@@ -33,7 +32,6 @@ class Explore extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <section>
         <div className="centered-container">

@@ -35,7 +35,6 @@ class UserShow extends React.Component {
   render() {
     const user = this.state.user;
     const currentUserId = tokenUserId();
-    console.log('THIS STATE USER', this.state.user);
     return(
       <div>
         {user

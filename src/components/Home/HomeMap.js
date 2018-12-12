@@ -7,8 +7,7 @@ import { redMarker, yellowMarker, blueMarker, userMarker } from '../../lib/mapIc
 
 
 
-const HomeMap = ({ userPosition, buildings, allBuildings, myBuildings, likedBuildings }) => {
-  console.log('BUILDINGS', buildings);
+const HomeMap = ({ userPosition, allBuildings, myBuildings, likedBuildings }) => {
   return (
     <div id='map'>
       <Map center={userPosition} zoom={14}>
