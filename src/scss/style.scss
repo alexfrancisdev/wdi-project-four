@@ -23,10 +23,6 @@ img {
   margin-bottom: 1rem;
 }
 
-// This is not overriding bulma :( for the user show page
-// .box {
-//   padding: 1rem;
-// }
 
 .explore-title {
   margin-bottom: 1rem;
@@ -76,12 +72,15 @@ $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome.scss";
 
 // Home
+// Label {
+//   height: 5px;
+//   line-height: 5px;
+// }
+
 .home-buttons {
   height: 5rem;
   .home-button-container input {
-    // opacity: 0.5;
     outline: none;
-
   }
   .home-button-input {
     margin-right: 0.5rem;
