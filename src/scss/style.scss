@@ -2,6 +2,58 @@ $box-color: #fffeff;
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome.scss";
 
+
+.ckbx-style-8 input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+}
+
+.ckbx-style-8 label {
+  width: 2em;
+  height: 1em;
+  position: relative;
+  cursor: pointer;
+  display: block;
+}
+
+.ckbx-style-8 label:before {
+  content: '';
+  position: absolute;
+  width: 2em;
+  height: 1em;
+  left: 0.1em;
+  transition: background 0.1s ease;
+  background: #F25F5C;
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(171, 66, 63, 0.5);
+}
+
+.ckbx-style-8 label:after {
+  content: '';
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  border-radius: 50px;
+  left: 0;
+  transition: all 0.2s ease;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  background: #fcfff4;
+  animation: switch-off .2s ease-out;
+  z-index: 2;
+}
+
+.ckbx-style-8 input[type=checkbox]:checked + label:before {
+  background: #70C1B3;
+  box-shadow: inset 0px 1px 1px rgba(84, 152, 140, 0.5);
+}
+
+.ckbx-style-8 input[type=checkbox]:checked + label:after {
+  animation: switch-on .2s ease-out;
+  left: 1.1em;
+}
+
+
+
 // COMMON
 * {
   font-size: 42px;
@@ -80,25 +132,25 @@ form {
 
 // HOME
 
-
-
 .map-container {
   .home-buttons-container {
     height: 20%;
     .home-buttons-label {
-      line-height: 0.25rem;
-      height: 1.25rem;
-      padding: 0;
-      margin-top: 0.75rem;
+      line-height: 1.25rem;
+      // height: 1rem;
+      padding-bottom: 0.5rem;
+      // vertical-align: center;
+      // margin-top: 0.75rem;
     }
     .home-buttons-label:last-child {
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
     .home-button-label input {
       outline: none;
     }
     .home-button-input {
       margin-right: 0.5rem;
+      margin-left: 1rem;
     }
   }
   .box-container {

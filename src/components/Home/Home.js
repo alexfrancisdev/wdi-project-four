@@ -75,25 +75,6 @@ class Home extends React.Component {
       });
   }
 
-  // handleAllButtonToggle() {
-  //   let allBuildings = [];
-  //   // this.getFollowedBuildings();
-  //   if(!this.state.allBuildingsStatus) {
-  //     allBuildings =  this.state.buildings;
-  //   }
-  //   if(this.state.myBuildingsStatus && this.state.likedBuildingsStatus && this.state.followedBuildingsStatus)  {
-  //     allBuildings.map(function(object) {
-  //       if (object.likes.includes(currentUserId)) {
-  //         allBuildings.splice(allBuildings.indexOf(object), 1);
-  //       } else if (object.addedBy === currentUserId) {
-  //         allBuildings.splice(allBuildings.indexOf(object), 1);
-  //       } else if (object.followedBy.includes(currentUserId)) {
-  //         allBuildings.splice(allBuildings.indexOf(object), 1);
-  //       }
-  //     });
-  //   }
-  // }
-  //
   handleAllButtonToggle() {
     let allBuildings = [];
     if(!this.state.allBuildingsStatus) {
@@ -137,10 +118,13 @@ class Home extends React.Component {
   render() {
     return (
       <section className="map-container">
-        <div className="home-buttons-container centered-container ">
-
+        <div className="home-buttons-container centered-container">
+          <div className="ckbx-style-8">
+            <input type="checkbox" id="ckbx-style-8-1" value="0" name="ckbx-style-8"/>
+            <label htmlFor="ckbx-style-8-1"></label>
+          </div>
           <form className="columns is-multiline is-mobile">
-            <label className="home-buttons-label column is-6">
+            <label className="home-buttons-label column is-6-mobile is-3-desktop">
               <input
                 className="home-button-input"
                 name="myBuildings"
@@ -149,10 +133,10 @@ class Home extends React.Component {
                 value="myBuildingsStatus"
                 onChange={this.handleMyButtonToggle}
               />
-              <span className="is-size-6-mobile">My Buildings</span>
+              <span className="is-size-6-mobile is-size-5-desktop">My Buildings</span>
             </label>
 
-            <label className="home-buttons-label column is-6">
+            <label className="home-buttons-label column is-6-mobile is-3-desktop">
               <input
                 className="home-button-input"
                 name="likedBuildings"
@@ -161,10 +145,10 @@ class Home extends React.Component {
                 value="likedBuildingsStatus"
                 onChange={this.handleLikedButtonToggle}
               />
-              <span className="is-size-6-mobile">Liked Buildings</span>
+              <span className="is-size-6-mobile is-size-5-desktop">Liked Buildings</span>
             </label>
 
-            <label className="home-buttons-label column is-6">
+            <label className="home-buttons-label column is-6-mobile is-3-desktop">
               <input
                 className="home-button-input"
                 name="followedBuildings"
@@ -173,10 +157,10 @@ class Home extends React.Component {
                 value="followedBuildingsStatus"
                 onChange={this.handleFollowedButtonToggle}
               />
-              <span className="is-size-6-mobile">Followed</span>
+              <span className="is-size-6-mobile is-size-5-desktop">Followed</span>
             </label>
 
-            <label className="home-buttons-label column is-6">
+            <label className="home-buttons-label column is-6-mobile is-3-desktop">
               <input
                 className="home-button-input"
                 name="allBuildings"
@@ -185,7 +169,7 @@ class Home extends React.Component {
                 value="allBuildingsStatus"
                 onChange={this.handleAllButtonToggle}
               />
-              <span className="is-size-6-mobile">All Buildings</span>
+              <span className="is-size-6-mobile is-size-5-desktop">All Buildings</span>
             </label>
 
           </form>
