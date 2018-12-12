@@ -119,7 +119,7 @@ class Home extends React.Component {
     return (
       <section className="map-container">
         <div className="home-buttons-container centered-container">
-          <div className="columns is-mobile">
+          <div className="columns is-mobile map-controls">
             <div className="column is-3 ckbx-style-8 mine-switch">
               <input type="checkbox" id="ckbx-style-8-1" value="1" name="ckbx-style-8" checked={this.state.myBuildingsStatus} onChange={this.handleMyButtonToggle}/>
               <label htmlFor="ckbx-style-8-1"></label>

@@ -6,6 +6,22 @@ a {
   color: #4A4A4A;
 }
 
+//navbar
+.navbar{
+  img {
+    max-height: 3rem;
+    margin: 7px;
+    margin-bottom: 0;
+  }
+  border-bottom: 1px solid rgba(0,0,0,.0975);
+  border-top: 1px solid rgba(0,0,0,.0975);
+  height: 8vh;
+}
+
+.navbar-item{
+  padding: 0;
+}
+
 
 .is-no-margin {
   margin: 0;
@@ -90,6 +106,19 @@ div[class^="ckbx-style-"] input[type=checkbox] {
 .ckbx-style-8 input[type=checkbox]:checked + label:after {
   animation: switch-on .2s ease-out;
   left: 0.55em;
+}
+
+.map-controls {
+  display: flex;
+  align-items: center;
+  height: auto;
+  margin-top: 1px;
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 
