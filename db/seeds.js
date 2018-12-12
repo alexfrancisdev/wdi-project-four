@@ -136,6 +136,19 @@ mongoose.connect(dbUri, (err, db) => {
       lat: 41.4036,
       lng: 2.1744
     }
+  }, {
+    _id: buildingIds[5],
+    name: 'The Forbidden City',
+    architect: 'Cai Xin, Nguyễn An, Kuai Xiang, Lu Xiang and others',
+    icon: 'https://www.wonders-of-the-world.net/Forbidden-city/images/Vignettes/Description/Mur-Est-de-la-cour-aux-eaux-d-or-01-V.jpg',
+    addedBy: userIds[0],
+    comments: [{
+      content: 'Such an impressive place',
+      user: userIds[2]}],
+    location: {
+      lat: 39.916164,
+      lng: 116.397079
+    }
   }])
     .then(buildings => {
       console.log(`${buildings.length} buildings created`);

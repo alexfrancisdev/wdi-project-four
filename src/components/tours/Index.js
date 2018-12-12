@@ -9,7 +9,6 @@ class TourIndex extends React.Component {
       query: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.checkState = this.checkState.bind(this);
   }
 
   handleInputChange() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { tokenUserId, authorizationHeader } from '../../lib/auth';
+import { tokenUserId, authorizationHeader, deleteToken } from '../../lib/auth';
 
 class UserShow extends React.Component {
   constructor(props) {
@@ -9,6 +9,7 @@ class UserShow extends React.Component {
     this.state = {};
     this.handleFollow = this.handleFollow.bind(this);
     this.handleUnfollow = this.handleUnfollow.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +33,11 @@ class UserShow extends React.Component {
     axios.post(`/api/users/${this.props.match.params.id}/unfollow`, this.state, authorizationHeader());
   }
 
+  handleLogout() {
+    deleteToken();
+    this.props.history.push('/landing');
+  }
+
   render() {
     const user = this.state.user;
     const currentUserId = tokenUserId();
@@ -53,7 +59,14 @@ class UserShow extends React.Component {
                 <h1 className="title">{user.username}</h1>
                 {currentUserId === user._id
                   ?
-                  <div></div>
+                  <div>
+                    <a onClick={this.handleLogout} className="button is-danger is-outlined">
+                      <span>Sign Out</span>
+                      <span className="icon is-small">
+                        <i className="fas fa-sign-out-alt"></i>
+                      </span>
+                    </a>
+                  </div>
                   :
                   <div>
                     {this.state.user.followedBy.toString().includes(tokenUserId())
