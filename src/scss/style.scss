@@ -2,6 +2,15 @@ $box-color: #fffeff;
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome.scss";
 
+a {
+  color: #4A4A4A;
+}
+
+
+div[class^="ckbx-style-"] input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+}
 
 .ckbx-style-8 input[type=checkbox] {
   position: absolute;
@@ -9,21 +18,54 @@ $fa-font-path: "~font-awesome/fonts";
 }
 
 .ckbx-style-8 label {
-  width: 2em;
-  height: 1em;
+  width: 1em;
+  height: 0.5em;
   position: relative;
   cursor: pointer;
   display: block;
 }
 
-.ckbx-style-8 label:before {
+.mine-switch label:before {
   content: '';
   position: absolute;
-  width: 2em;
-  height: 1em;
-  left: 0.1em;
-  transition: background 0.1s ease;
-  background: #F25F5C;
+  width: 1em;
+  height: 0.5em;
+  left: 0.05em;
+  transition: background 0.05s ease;
+  background: #D2312C;
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(171, 66, 63, 0.5);
+}
+.liked-switch label:before {
+  content: '';
+  position: absolute;
+  width: 1em;
+  height: 0.5em;
+  left: 0.05em;
+  transition: background 0.05s ease;
+  background: #F5B843;
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(171, 66, 63, 0.5);
+}
+.followed-switch label:before {
+  content: '';
+  position: absolute;
+  width: 1em;
+  height: 0.5em;
+  left: 0.05em;
+  transition: background 0.05s ease;
+  background: #43954A;
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(171, 66, 63, 0.5);
+}
+.all-switch label:before {
+  content: '';
+  position: absolute;
+  width: 1em;
+  height: 0.5em;
+  left: 0.05em;
+  transition: background 0.05s ease;
+  background: #3FA5DB;
   border-radius: 50px;
   box-shadow: inset 0px 1px 1px rgba(171, 66, 63, 0.5);
 }
@@ -31,8 +73,8 @@ $fa-font-path: "~font-awesome/fonts";
 .ckbx-style-8 label:after {
   content: '';
   position: absolute;
-  width: 1em;
-  height: 1em;
+  width: 0.5em;
+  height: 0.5em;
   border-radius: 50px;
   left: 0;
   transition: all 0.2s ease;
@@ -42,16 +84,30 @@ $fa-font-path: "~font-awesome/fonts";
   z-index: 2;
 }
 
-.ckbx-style-8 input[type=checkbox]:checked + label:before {
-  background: #70C1B3;
+.mine-switch input[type=checkbox]:checked + label:before {
+  background: #D2312C;
+  box-shadow: inset 0px 1px 1px rgba(84, 152, 140, 0.5);
+}
+
+.liked-switch input[type=checkbox]:checked + label:before {
+  background: #F5B843;
+  box-shadow: inset 0px 1px 1px rgba(84, 152, 140, 0.5);
+}
+
+.followed-switch input[type=checkbox]:checked + label:before {
+  background: #43954A;
+  box-shadow: inset 0px 1px 1px rgba(84, 152, 140, 0.5);
+}
+
+.all-switch input[type=checkbox]:checked + label:before {
+  background: #3FA5DB;
   box-shadow: inset 0px 1px 1px rgba(84, 152, 140, 0.5);
 }
 
 .ckbx-style-8 input[type=checkbox]:checked + label:after {
   animation: switch-on .2s ease-out;
-  left: 1.1em;
+  left: 0.55em;
 }
-
 
 
 // COMMON
