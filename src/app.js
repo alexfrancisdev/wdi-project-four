@@ -18,8 +18,8 @@ import Login from './components/auth/Login';
 import Landing from './components/auth/Landing';
 import SecureRoute from './components/auth/SecureRoute';
 
-import './scss/style.scss';
 import 'bulma';
+import './scss/style.scss';
 
 class App extends React.Component {
   render() {

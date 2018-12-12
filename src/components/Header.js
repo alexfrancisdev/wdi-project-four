@@ -7,7 +7,7 @@ class Header extends React.Component {
   render() {
     return (
       <div className="header">
-        <h1 className="logo is-size-3-mobile">Placeholder</h1>
+        <h1 className="logo is-size-3-mobile is-size-1-desktop">Placeholder</h1>
       </div>
     );
   }

@@ -1,4 +1,116 @@
-// Common
+$box-color: #fffeff;
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome.scss";
+
+a {
+  color: #4A4A4A;
+}
+
+
+div[class^="ckbx-style-"] input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+}
+
+.ckbx-style-8 input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+}
+
+.ckbx-style-8 label {
+  width: 1em;
+  height: 0.5em;
+  position: relative;
+  cursor: pointer;
+  display: block;
+}
+
+.mine-switch label:before {
+  content: '';
+  position: absolute;
+  width: 1em;
+  height: 0.5em;
+  left: 0.05em;
+  transition: background 0.05s ease;
+  background: #D2312C;
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(171, 66, 63, 0.5);
+}
+.liked-switch label:before {
+  content: '';
+  position: absolute;
+  width: 1em;
+  height: 0.5em;
+  left: 0.05em;
+  transition: background 0.05s ease;
+  background: #F5B843;
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(171, 66, 63, 0.5);
+}
+.followed-switch label:before {
+  content: '';
+  position: absolute;
+  width: 1em;
+  height: 0.5em;
+  left: 0.05em;
+  transition: background 0.05s ease;
+  background: #43954A;
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(171, 66, 63, 0.5);
+}
+.all-switch label:before {
+  content: '';
+  position: absolute;
+  width: 1em;
+  height: 0.5em;
+  left: 0.05em;
+  transition: background 0.05s ease;
+  background: #3FA5DB;
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(171, 66, 63, 0.5);
+}
+
+.ckbx-style-8 label:after {
+  content: '';
+  position: absolute;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50px;
+  left: 0;
+  transition: all 0.2s ease;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  background: #fcfff4;
+  animation: switch-off .2s ease-out;
+  z-index: 2;
+}
+
+.mine-switch input[type=checkbox]:checked + label:before {
+  background: #D2312C;
+  box-shadow: inset 0px 1px 1px rgba(84, 152, 140, 0.5);
+}
+
+.liked-switch input[type=checkbox]:checked + label:before {
+  background: #F5B843;
+  box-shadow: inset 0px 1px 1px rgba(84, 152, 140, 0.5);
+}
+
+.followed-switch input[type=checkbox]:checked + label:before {
+  background: #43954A;
+  box-shadow: inset 0px 1px 1px rgba(84, 152, 140, 0.5);
+}
+
+.all-switch input[type=checkbox]:checked + label:before {
+  background: #3FA5DB;
+  box-shadow: inset 0px 1px 1px rgba(84, 152, 140, 0.5);
+}
+
+.ckbx-style-8 input[type=checkbox]:checked + label:after {
+  animation: switch-on .2s ease-out;
+  left: 0.55em;
+}
+
+
+// COMMON
 * {
   font-size: 42px;
 }
@@ -24,28 +136,25 @@ img {
   margin-right: 3rem;
 }
 
-.user-subtitle {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+// SECTIONS
+.container {
+  height: 100%;
+  main {
+    height: 90%;
+    overflow: scroll;
+  }
 }
 
-// This is not overriding bulma :( for the user show page
-// .box {
-//   padding: 1rem;
-// }
-
-.explore-title {
-  margin-bottom: 1rem;
+.header {
+  height: 25%;
+  .logo {
+    font-family: 'Pacifico', cursive;
+    padding: 0.5rem 1rem;
+  }
 }
 
-form {
-  margin-top: -1rem;
-}
-
-// Sections
-main {
-  height: 540px;
-  overflow: scroll;
+.navbar {
+  height: 5%;
 }
 
 .navbar-brand {
@@ -56,9 +165,6 @@ main {
   justify-content: space-around;
 }
 
-.navbar {
-  height: 55px;
-}
 
 .fa-home:before, .fa-search:before, .fa-plus:before, .fa-user:before, .fa-sign-out:before, .fa-link:before {
   font-size: 24px;
@@ -69,29 +175,61 @@ main {
   font-size: 34px;
 }
 
-.header {
-  height: 63px;
-  .logo {
-    font-family: 'Pacifico', cursive;
-    padding: 0.5rem 1rem;
-    // color: white;
-  }
+
+// USER SHOW
+.user-subtitle {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-$fa-font-path: "~font-awesome/fonts";
-@import "~font-awesome/scss/font-awesome.scss";
+// EXPLORE
+.explore-title {
+  margin-bottom: 1rem;
+}
 
-// Home
-.home-buttons {
-  height: 5rem;
-  .home-button-container input {
-    // opacity: 0.5;
-    outline: none;
+form {
+  margin-top: -1rem;
+}
 
+
+// HOME
+
+.map-container {
+  .home-buttons-container {
+    height: 20%;
+    .home-buttons-label {
+      line-height: 1.25rem;
+      // height: 1rem;
+      padding-bottom: 0.5rem;
+      // vertical-align: center;
+      // margin-top: 0.75rem;
+    }
+    .home-buttons-label:last-child {
+      margin-bottom: 1.5rem;
+    }
+    .home-button-label input {
+      outline: none;
+    }
+    .home-button-input {
+      margin-right: 0.5rem;
+      margin-left: 1rem;
+    }
   }
-  .home-button-input {
-    margin-right: 0.5rem;
+  .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    .leaflet-container {
+      width: 100%;
+      height: 72%;
+    }
 
+    .map-container {
+      padding: 0;
+    }
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
   }
 }
 
@@ -113,42 +251,12 @@ $fa-font-path: "~font-awesome/fonts";
   background-color: rgba(0, 0, 0, 0.28);
 }
 
-$box-color: #fffeff;
-.box-container {
-  display: flex;
-  flex-wrap: wrap;
-  // BURGER BOX!!!
-  .burger-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 200px;
-    border: 1px #ccc solid;
-    border-radius: 5px;
-    margin: 10px;
-    padding: 10px;
-    background-color: $box-color;
-    &:hover {
-      background-color: darken($box-color, 2%);
-    }
-  }
-}
-
-#map {
-  height: 540px;
-  width: 100%;
-}
 
 
-.map-container {
-  padding: 0;
-}
 
-.leaflet-container {
-  width: 100%;
-  height: 540px;
-}
+
+
+
 
 // Explore
 

@@ -10,17 +10,19 @@ class Home extends React.Component {
     this.state = {
       userPosition: null,
       allBuildingsStatus: false,
-      myBuildingsStatus: true,
-      likedBuildingsStatus: false
+      myBuildingsStatus: false,
+      likedBuildingsStatus: false,
+      followedBuildingsStatus: false
     };
     this.getLocation = this.getLocation.bind(this);
     this.getAllBuildings = this.getAllBuildings.bind(this);
     this.getMyBuildings = this.getMyBuildings.bind(this);
     this.getLikedBuildings = this.getLikedBuildings.bind(this);
-    // this.getFollowedBuildings = this.getFollowedBuildings.bind(this);
+    this.getFollowedBuildings = this.getFollowedBuildings.bind(this);
     this.handleAllButtonToggle = this.handleAllButtonToggle.bind(this);
     this.handleMyButtonToggle = this.handleMyButtonToggle.bind(this);
     this.handleLikedButtonToggle = this.handleLikedButtonToggle.bind(this);
+    this.handleFollowedButtonToggle = this.handleFollowedButtonToggle.bind(this);
   }
 
   getLocation(pos) {
@@ -31,8 +33,7 @@ class Home extends React.Component {
 
   getAllBuildings() {
     axios.get('/api/buildings')
-      .then(result => this.setState({ buildings: result.data }, () => {
-      }));
+      .then(result => this.setState({ buildings: result.data }));
   }
 
   getMyBuildings() {
@@ -61,18 +62,18 @@ class Home extends React.Component {
       });
   }
 
-  // getFollowedBuildings() {
-  //   const followedBuildings = [];
-  //   axios.get('/api/users')
-  //     .then(result => {
-  //       result.data.map(function(object) {
-  //         if(object.likes.includes(currentUserId)) {
-  //           followedBuildings.push(object);
-  //         }
-  //       });
-  //       this.setState({ followedBuildings: followedBuildings});
-  //     });
-  // }
+  getFollowedBuildings() {
+    const followedBuildings = [];
+    axios.get('/api/users')
+      .then(result => {
+        result.data.map(function(object) {
+          if(object.followedBy.includes(currentUserId)) {
+            followedBuildings.push(object.buildingsAdded);
+          }
+        });
+        this.setState({ followedBuildings: followedBuildings.flat() });
+      });
+  }
 
   handleAllButtonToggle() {
     let allBuildings = [];
@@ -91,9 +92,11 @@ class Home extends React.Component {
 
   handleMyButtonToggle() {
     this.getMyBuildings();
-    let myBuildings = [];
     if(!this.state.myBuildingsStatus) {
-      myBuildings =  this.state.myBuildings;
+      this.setState({ myBuildingsStatus: !this.state.myBuildingsStatus, myBuildings: this.state.myBuildings });
+    } else if(this.state.myBuildingsStatus) {
+      const myBuildings = [];
+      this.setState({ myBuildingsStatus: !this.state.myBuildingsStatus, myBuildings: myBuildings });
     }
     this.setState({ myBuildingsStatus: !this.state.myBuildingsStatus, myBuildings: this.state.myBuildings });
   }
@@ -103,6 +106,11 @@ class Home extends React.Component {
     this.setState({ likedBuildingsStatus: !this.state.likedBuildingsStatus, likedBuildings: this.state.likedBuildings });
   }
 
+  handleFollowedButtonToggle() {
+    this.getFollowedBuildings();
+    this.setState({ followedBuildingsStatus: !this.state.followedBuildingsStatus, followedBuildings: this.state.followedBuildings });
+  }
+
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(this.getLocation, this.getBuildings);
   }
@@ -110,22 +118,47 @@ class Home extends React.Component {
   render() {
     return (
       <section className="map-container">
-        <div className="home-buttons centered-container ">
-
-          <form className="columns is-multiline is-mobile">
-            <label className="home-button-container column is-3">
+        <div className="home-buttons-container centered-container">
+          <div className="columns is-mobile">
+            <div className="column is-3 ckbx-style-8 mine-switch">
+              <input type="checkbox" id="ckbx-style-8-1" value="1" name="ckbx-style-8" checked={this.state.myBuildingsStatus} onChange={this.handleMyButtonToggle}/>
+              <label htmlFor="ckbx-style-8-1"></label>
+              <p className="is-size-6-mobile">Mine</p>
+            </div>
+            <div className="column is-3 ckbx-style-8 liked-switch">
+              <input type="checkbox" id="ckbx-style-8-2" value="1" name="ckbx-style-8" checked={this.state.likedBuildingsStatus} onChange={this.handleLikedButtonToggle}/>
+              <label htmlFor="ckbx-style-8-2"></label>
+              <p className="is-size-6-mobile">Liked</p>
+            </div>
+            <div className="column is-3 ckbx-style-8 followed-switch">
+              <input type="checkbox" id="ckbx-style-8-3" value="1" name="ckbx-style-8" checked={this.state.followedBuildingsStatus} onChange={this.handleFollowedButtonToggle}/>
+              <label htmlFor="ckbx-style-8-3"></label>
+              <p className="is-size-6-mobile">Followed</p>
+            </div>
+            <div className="column is-3 ckbx-style-8 all-switch">
+              <input type="checkbox" id="ckbx-style-8-4" value="1" name="ckbx-style-8" checked={this.state.allBuildingsStatus} onChange={this.handleAllButtonToggle}/>
+              <label htmlFor="ckbx-style-8-4"></label>
+              <p className="is-size-6-mobile">All</p>
+            </div>
+          </div>
+          {/* <div className="ckbx-style-8">
+            <input type="checkbox" id="ckbx-style-8-1" value="0" name="ckbx-style-8"/>
+            <label htmlFor="ckbx-style-8-1"></label>
+          </div> */}
+          {/* <form className="columns is-multiline is-mobile">
+            <label className="home-buttons-label column is-6-mobile is-3-desktop">
               <input
                 className="home-button-input"
-                name="myBuildings"
+                // name="myBuildings"
                 type="checkbox"
                 checked={this.state.myBuildingsStatus}
                 value="myBuildingsStatus"
                 onChange={this.handleMyButtonToggle}
               />
-              <span className="is-size-6-mobile">My</span>
+              <span className="is-size-6-mobile is-size-5-desktop">My Buildings</span>
             </label>
 
-            <label className="home-button-container column is-3">
+            <label className="home-buttons-label column is-6-mobile is-3-desktop">
               <input
                 className="home-button-input"
                 name="likedBuildings"
@@ -134,10 +167,22 @@ class Home extends React.Component {
                 value="likedBuildingsStatus"
                 onChange={this.handleLikedButtonToggle}
               />
-              <span className="is-size-6-mobile">Liked</span>
+              <span className="is-size-6-mobile is-size-5-desktop">Liked Buildings</span>
             </label>
 
-            <label className="home-button-container column is-3">
+            <label className="home-buttons-label column is-6-mobile is-3-desktop">
+              <input
+                className="home-button-input"
+                name="followedBuildings"
+                type="checkbox"
+                checked={this.state.followedBuildingsStatus}
+                value="followedBuildingsStatus"
+                onChange={this.handleFollowedButtonToggle}
+              />
+              <span className="is-size-6-mobile is-size-5-desktop">Followed</span>
+            </label>
+
+            <label className="home-buttons-label column is-6-mobile is-3-desktop">
               <input
                 className="home-button-input"
                 name="allBuildings"
@@ -146,9 +191,10 @@ class Home extends React.Component {
                 value="allBuildingsStatus"
                 onChange={this.handleAllButtonToggle}
               />
-              <span className="is-size-6-mobile">All</span>
+              <span className="is-size-6-mobile is-size-5-desktop">All Buildings</span>
             </label>
-          </form>
+
+          </form> */}
 
         </div>
         <div className="box-container">
@@ -162,6 +208,7 @@ class Home extends React.Component {
               allBuildings={this.state.allBuildings}
               myBuildings={this.state.myBuildings}
               likedBuildings={this.state.likedBuildings}
+              followedBuildings={this.state.followedBuildings}
             />
           }
         </div>
