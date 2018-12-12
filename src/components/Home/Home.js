@@ -33,7 +33,7 @@ class Home extends React.Component {
 
   getAllBuildings() {
     axios.get('/api/buildings')
-      .then(result => this.setState({ buildings: result.data, filteredBuildings: result.data }));
+      .then(result => this.setState({ buildings: result.data }));
   }
 
   getMyBuildings() {
@@ -75,23 +75,37 @@ class Home extends React.Component {
       });
   }
 
+  // handleAllButtonToggle() {
+  //   let allBuildings = [];
+  //   // this.getFollowedBuildings();
+  //   if(!this.state.allBuildingsStatus) {
+  //     allBuildings =  this.state.buildings;
+  //   }
+  //   if(this.state.myBuildingsStatus && this.state.likedBuildingsStatus && this.state.followedBuildingsStatus)  {
+  //     allBuildings.map(function(object) {
+  //       if (object.likes.includes(currentUserId)) {
+  //         allBuildings.splice(allBuildings.indexOf(object), 1);
+  //       } else if (object.addedBy === currentUserId) {
+  //         allBuildings.splice(allBuildings.indexOf(object), 1);
+  //       } else if (object.followedBy.includes(currentUserId)) {
+  //         allBuildings.splice(allBuildings.indexOf(object), 1);
+  //       }
+  //     });
+  //   }
+  // }
+  //
   handleAllButtonToggle() {
     let allBuildings = [];
-    // this.getFollowedBuildings();
     if(!this.state.allBuildingsStatus) {
       allBuildings =  this.state.buildings;
     }
-    if(this.state.myBuildingsStatus && this.state.likedBuildingsStatus && this.state.followedBuildingsStatus)  {
-      allBuildings.map(function(object) {
-        if (object.likes.includes(currentUserId)) {
-          allBuildings.splice(allBuildings.indexOf(object), 1);
-        } else if (object.addedBy === currentUserId) {
-          allBuildings.splice(allBuildings.indexOf(object), 1);
-        } else if (object.followedBy.includes(currentUserId)) {
-          allBuildings.splice(allBuildings.indexOf(object), 1);
-        }
-      });
-    }
+    allBuildings.map(function(object) {
+      if (object.likes.includes(currentUserId)) {
+        allBuildings.splice(allBuildings.indexOf(object), 1);
+      } else if (object.addedBy === currentUserId) {
+        allBuildings.splice(allBuildings.indexOf(object), 1);
+      }
+    });
     this.setState({ allBuildingsStatus: !this.state.allBuildingsStatus, allBuildings: allBuildings });
   }
 
@@ -103,6 +117,7 @@ class Home extends React.Component {
       const myBuildings = [];
       this.setState({ myBuildingsStatus: !this.state.myBuildingsStatus, myBuildings: myBuildings });
     }
+    this.setState({ myBuildingsStatus: !this.state.myBuildingsStatus, myBuildings: this.state.myBuildings });
   }
 
   handleLikedButtonToggle() {
@@ -122,10 +137,10 @@ class Home extends React.Component {
   render() {
     return (
       <section className="map-container">
-        <div className="home-buttons centered-container ">
+        <div className="home-buttons-container centered-container ">
 
           <form className="columns is-multiline is-mobile">
-            <label className="home-button-container column is-6">
+            <label className="home-buttons-label column is-6">
               <input
                 className="home-button-input"
                 name="myBuildings"
@@ -137,7 +152,7 @@ class Home extends React.Component {
               <span className="is-size-6-mobile">My Buildings</span>
             </label>
 
-            <label className="home-button-container column is-6">
+            <label className="home-buttons-label column is-6">
               <input
                 className="home-button-input"
                 name="likedBuildings"
@@ -149,7 +164,7 @@ class Home extends React.Component {
               <span className="is-size-6-mobile">Liked Buildings</span>
             </label>
 
-            <label className="home-button-container column is-6">
+            <label className="home-buttons-label column is-6">
               <input
                 className="home-button-input"
                 name="followedBuildings"
@@ -158,10 +173,10 @@ class Home extends React.Component {
                 value="followedBuildingsStatus"
                 onChange={this.handleFollowedButtonToggle}
               />
-              <span className="is-size-6-mobile">Followed Buildings</span>
+              <span className="is-size-6-mobile">Followed</span>
             </label>
 
-            <label className="home-button-container column is-6">
+            <label className="home-buttons-label column is-6">
               <input
                 className="home-button-input"
                 name="allBuildings"
@@ -183,7 +198,7 @@ class Home extends React.Component {
             :
             <HomeMap
               userPosition={this.state.userPosition}
-              buildings={this.state.filteredBuildings}
+              buildings={this.state.allBuildings}
               allBuildings={this.state.allBuildings}
               myBuildings={this.state.myBuildings}
               likedBuildings={this.state.likedBuildings}

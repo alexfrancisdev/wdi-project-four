@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { saveToken } from '../../lib/auth';
 
@@ -17,7 +18,6 @@ class Login extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
     axios.post('/api/login', this.state)
       .then(res => {
         saveToken(res.data.token);
@@ -50,8 +50,13 @@ class Login extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <button className="button is-light">Submit</button>
+          <button className="button is-dark is-outlined is-large is-fullwidth">Submit</button>
         </form>
+        <hr/>
+        <p className="is-size-7 has-text-centered">Not yet registered? Sign-up below</p>
+        <Link to="/register" name="new-building">
+          <button className="button is-outlined is-medium is-fullwidth">Register</button>
+        </Link>
       </div>
     );
   }

@@ -17,14 +17,12 @@ class Show extends React.Component {
 
   handleAddedByClick() {
     const userId = this.state.building.addedBy.id;
-    console.log(this.state.building.addedBy.id);
     this.props.history.push(`/user/${userId}`);
   }
 
   handleLike() {
     const currentUserId = tokenUserId();
     const likes = this.state.building.likes;
-    console.log('STATE', this.state.building);
     likes.push(currentUserId);
     this.setState({ likes: likes });
     axios.post(`/api/buildings/${this.props.match.params.id}/like`, this.state, authorizationHeader());
@@ -52,13 +50,11 @@ class Show extends React.Component {
 
   handleChange({ target: { name, value }}){
     this.setState({ [name]: value });
-    console.log('this is the state', this.state);
   }
 
 
 
   render() {
-    console.log('RENDER');
     const building = this.state.building;
     return(
       <div className="centered-container">

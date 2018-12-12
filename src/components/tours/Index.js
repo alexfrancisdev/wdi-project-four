@@ -9,7 +9,6 @@ class TourIndex extends React.Component {
       query: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.checkState = this.checkState.bind(this);
   }
 
   handleInputChange() {
@@ -22,12 +21,7 @@ class TourIndex extends React.Component {
     filteredTours = tours.filter(tour =>
       tour.name.includes(query.toLowerCase())
     );
-    console.log('state ==>', this.state);
     this.setState({ filteredTours: filteredTours });
-  }
-
-  checkState(){
-    console.log('state is----', this.state);
   }
 
   componentDidMount() {
