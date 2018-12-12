@@ -31,7 +31,7 @@ class Home extends React.Component {
 
   getAllBuildings() {
     axios.get('/api/buildings')
-      .then(result => this.setState({ buildings: result.data, filteredBuildings: result.data }, () => {
+      .then(result => this.setState({ buildings: result.data }, () => {
       }));
   }
 
@@ -75,11 +75,18 @@ class Home extends React.Component {
   // }
 
   handleAllButtonToggle() {
-    let filteredBuildings = [];
+    let allBuildings = [];
     if(!this.state.allBuildingsStatus) {
-      filteredBuildings =  this.state.buildings;
+      allBuildings =  this.state.buildings;
     }
-    this.setState({ allBuildingsStatus: !this.state.allBuildingsStatus, allBuildings: filteredBuildings });
+    allBuildings.map(function(object) {
+      if (object.likes.includes(currentUserId)) {
+        allBuildings.splice(allBuildings.indexOf(object), 1);
+      } else if (object.addedBy === currentUserId) {
+        allBuildings.splice(allBuildings.indexOf(object), 1);
+      }
+    });
+    this.setState({ allBuildingsStatus: !this.state.allBuildingsStatus, allBuildings: allBuildings });
   }
 
   handleMyButtonToggle() {
@@ -151,7 +158,7 @@ class Home extends React.Component {
             :
             <HomeMap
               userPosition={this.state.userPosition}
-              buildings={this.state.filteredBuildings}
+              buildings={this.state.allBuildings}
               allBuildings={this.state.allBuildings}
               myBuildings={this.state.myBuildings}
               likedBuildings={this.state.likedBuildings}
