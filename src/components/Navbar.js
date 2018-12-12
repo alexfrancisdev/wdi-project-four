@@ -23,9 +23,10 @@ class Navbar extends React.Component {
         <div className="navbar-brand">
           <Link className="navbar-item" to="/"><FA name="home"/></Link>
           <Link className="navbar-item" to="/explore"><FA name="search"/></Link>
+          <Link className="navbar-item" to="/tours/new"><FA name="plus"/></Link>
           <Link className="navbar-item" to="/tours"><img src={routeIcon}/></Link>
           <Link className="navbar-item" to={`/user/${decodeToken().sub}`}><FA name="user"/></Link>
-          <a onClick={this.handleLogout} className="navbar-item" to='/login'><FA name="sign-out"/></a>
+          {/* <a onClick={this.handleLogout} className="navbar-item" to='/login'><FA name="sign-out"/></a> */}
         </div>
       </nav>
     );

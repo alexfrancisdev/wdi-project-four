@@ -9,15 +9,15 @@ class Home extends React.Component {
     super(props);
     this.state = {
       userPosition: null,
-      allBuildingsStatus: true,
+      allBuildingsStatus: false,
       myBuildingsStatus: true,
-      likedBuildingsStatus: true
+      likedBuildingsStatus: false
     };
     this.getLocation = this.getLocation.bind(this);
     this.getAllBuildings = this.getAllBuildings.bind(this);
     this.getMyBuildings = this.getMyBuildings.bind(this);
     this.getLikedBuildings = this.getLikedBuildings.bind(this);
-    this.getFollowedBuildings = this.getFollowedBuildings.bind(this);
+    // this.getFollowedBuildings = this.getFollowedBuildings.bind(this);
     this.handleAllButtonToggle = this.handleAllButtonToggle.bind(this);
     this.handleMyButtonToggle = this.handleMyButtonToggle.bind(this);
     this.handleLikedButtonToggle = this.handleLikedButtonToggle.bind(this);
@@ -39,6 +39,7 @@ class Home extends React.Component {
   getMyBuildings() {
     const myBuildings = [];
     axios.get('/api/buildings')
+      // .then(result => console.log('result.data!!!!!', result.data, currentUserId))
       .then(result => {
         result.data.map(function(object) {
           if(object.addedBy === currentUserId) {
@@ -46,7 +47,6 @@ class Home extends React.Component {
           }
         });
         this.setState({ myBuildings: myBuildings});
-        console.log('state', this.state);
       });
   }
 
@@ -63,18 +63,18 @@ class Home extends React.Component {
       });
   }
 
-  getFollowedBuildings() {
-    const followedBuildings = [];
-    axios.get('/api/users/')
-      .then(result => {
-        result.data.map(function(object) {
-          if(object.likes.includes(currentUserId)) {
-            followedBuildings.push(object);
-          }
-        });
-        this.setState({ followedBuildings: followedBuildings}, () => console.log('STATE', this.state));
-      });
-  }
+  // getFollowedBuildings() {
+  //   const followedBuildings = [];
+  //   axios.get('/api/users')
+  //     .then(result => {
+  //       result.data.map(function(object) {
+  //         if(object.likes.includes(currentUserId)) {
+  //           followedBuildings.push(object);
+  //         }
+  //       });
+  //       this.setState({ followedBuildings: followedBuildings}, () => console.log('STATE', this.state));
+  //     });
+  // }
 
   handleAllButtonToggle() {
     let filteredBuildings = [];
@@ -86,6 +86,10 @@ class Home extends React.Component {
 
   handleMyButtonToggle() {
     this.getMyBuildings();
+    let myBuildings = [];
+    if(!this.state.myBuildingsStatus) {
+      myBuildings =  this.state.myBuildings;
+    }
     this.setState({ myBuildingsStatus: !this.state.myBuildingsStatus, myBuildings: this.state.myBuildings }), () => console.log('STATE', this.state);
   }
 
