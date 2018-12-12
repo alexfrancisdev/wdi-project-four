@@ -65,7 +65,7 @@ class Home extends React.Component {
 
   getFollowedBuildings() {
     const followedBuildings = [];
-    axios.get('/api/users')
+    axios.get('/api/users/')
       .then(result => {
         result.data.map(function(object) {
           if(object.likes.includes(currentUserId)) {

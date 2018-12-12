@@ -1,11 +1,13 @@
 import React from 'react';
 import { Map, TileLayer, Marker, Popup} from 'react-leaflet';
 import { Link } from 'react-router-dom';
-import { redMarker, userMarker } from '../../lib/mapIcons';
+// import { redMarker, userMarker } from '../../lib/mapIcons';
+import { redMarker, yellowMarker, blueMarker, userMarker } from '../../lib/mapIcons';
+// import { redMarker, yellowMarker, blueMarker, greenMarker, userMarker } from '../../lib/mapIcons';
 
 
 
-const HomeMap = ({ userPosition, buildings }) => {
+const HomeMap = ({ userPosition, buildings, allBuildings, myBuildings, likedBuildings }) => {
   console.log('BUILDINGS', buildings);
   return (
     <div id='map'>
@@ -19,8 +21,34 @@ const HomeMap = ({ userPosition, buildings }) => {
         Your location!
           </Popup>
         </Marker>}
-        {buildings && buildings.map(building =>
+        {myBuildings && myBuildings.map(building =>
           <Marker icon={ redMarker } key={building._id} position={[building.location.lat, building.location.lng]}>
+            <Popup>
+              <Link to={`/explore/${building._id}`}>
+                <div className="popup">
+                  <h2>{building.name}</h2>
+                  <img src={building.icon}/>
+                  <p>{building.architect}</p>
+                </div>
+              </Link>
+            </Popup>
+          </Marker>
+        )}
+        {likedBuildings && likedBuildings.map(building =>
+          <Marker icon={ yellowMarker } key={building._id} position={[building.location.lat, building.location.lng]}>
+            <Popup>
+              <Link to={`/explore/${building._id}`}>
+                <div className="popup">
+                  <h2>{building.name}</h2>
+                  <img src={building.icon}/>
+                  <p>{building.architect}</p>
+                </div>
+              </Link>
+            </Popup>
+          </Marker>
+        )}
+        {allBuildings && allBuildings.map(building =>
+          <Marker icon={ blueMarker } key={building._id} position={[building.location.lat, building.location.lng]}>
             <Popup>
               <Link to={`/explore/${building._id}`}>
                 <div className="popup">
