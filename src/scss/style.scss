@@ -6,6 +6,10 @@ a {
   color: #4A4A4A;
 }
 
+a:hover {
+  color: #8C8C8C;
+}
+
 
 div[class^="ckbx-style-"] input[type=checkbox] {
   position: absolute;
@@ -25,49 +29,15 @@ div[class^="ckbx-style-"] input[type=checkbox] {
   display: block;
 }
 
-.mine-switch label:before {
+.ckbx-style-8 label:before {
   content: '';
   position: absolute;
   width: 1em;
   height: 0.5em;
   left: 0.05em;
   transition: background 0.05s ease;
-  background: #D2312C;
+  background: #A3A3A3;
   border-radius: 50px;
-  box-shadow: inset 0px 1px 1px rgba(171, 66, 63, 0.5);
-}
-.liked-switch label:before {
-  content: '';
-  position: absolute;
-  width: 1em;
-  height: 0.5em;
-  left: 0.05em;
-  transition: background 0.05s ease;
-  background: #F5B843;
-  border-radius: 50px;
-  box-shadow: inset 0px 1px 1px rgba(171, 66, 63, 0.5);
-}
-.followed-switch label:before {
-  content: '';
-  position: absolute;
-  width: 1em;
-  height: 0.5em;
-  left: 0.05em;
-  transition: background 0.05s ease;
-  background: #43954A;
-  border-radius: 50px;
-  box-shadow: inset 0px 1px 1px rgba(171, 66, 63, 0.5);
-}
-.all-switch label:before {
-  content: '';
-  position: absolute;
-  width: 1em;
-  height: 0.5em;
-  left: 0.05em;
-  transition: background 0.05s ease;
-  background: #3FA5DB;
-  border-radius: 50px;
-  box-shadow: inset 0px 1px 1px rgba(171, 66, 63, 0.5);
 }
 
 .ckbx-style-8 label:after {
