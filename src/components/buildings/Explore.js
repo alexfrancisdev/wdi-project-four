@@ -6,7 +6,8 @@ class Explore extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: ''
+      query: '',
+      filteredBuildings: []
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.filterBuildings = this.filterBuildings.bind(this);
@@ -28,6 +29,7 @@ class Explore extends React.Component {
       building.architect.toLowerCase().includes(query.toLowerCase())
     );
     this.setState({ filteredBuildings: filteredBuildings });
+    console.log(this.state);
   }
 
   componentDidMount() {
@@ -58,12 +60,19 @@ class Explore extends React.Component {
               :
               <h1 className="explore-title is-size-4-mobile">Search Results</h1>}
           </div>
+          {!this.state.filteredBuildings.length > 0
+            ?
+            <div className="columns is-mobile">
+              <p className="column is-size-4 is-12 has-text-centered">No results found</p>
+            </div>
+            :
+            <div>
+              {this.state.filteredBuildings && this.state.filteredBuildings.map(
+                filteredBuilding => <BuildingBox key={filteredBuilding._id} filteredBuilding={filteredBuilding}/>
+              )}
+            </div>
+          }
 
-          <div>
-            {this.state.filteredBuildings && this.state.filteredBuildings.map(
-              filteredBuilding => <BuildingBox key={filteredBuilding._id} filteredBuilding={filteredBuilding}/>
-            )}
-          </div>
         </div>
       </section>
     );
