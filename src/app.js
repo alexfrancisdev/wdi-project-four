@@ -15,10 +15,11 @@ import TourShow from './components/tours/Show';
 import UserShow from './components/user/UserShow';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import Landing from './components/auth/Landing';
+import SecureRoute from './components/auth/SecureRoute';
 
 import './scss/style.scss';
 import 'bulma';
-
 
 class App extends React.Component {
   render() {
@@ -28,17 +29,18 @@ class App extends React.Component {
           <Header />
           <main>
             <Switch>
-              <Route exact path="/" component={Home}/>
-              <Route exact path="/explore" component={Explore}/>
-              <Route exact path="/new" component={NewMenu}/>
-              <Route exact path="/explore/new" component={NewBuilding}/>
-              <Route path="/explore/:id" component={Show}/>
-              <Route exact path="/tours" component={TourIndex}/>
-              <Route path="/tours/new" component={NewTour}/>
-              <Route path="/tours/:id/" component={TourShow}/>
-              <Route path="/user/:id" component={UserShow}/>
-              <Route path="/register" component={Register} />
-              <Route path="/login" component={Login} />
+              <Route exact path="/landing" component={Landing}/>
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <SecureRoute exact path="/" component={Home}/>
+              <SecureRoute exact path="/explore" component={Explore}/>
+              <SecureRoute exact path="/new" component={NewMenu}/>
+              <SecureRoute exact path="/explore/new" component={NewBuilding}/>
+              <SecureRoute path="/explore/:id" component={Show}/>
+              <SecureRoute exact path="/tours" component={TourIndex}/>
+              <SecureRoute exact path="/tours/new" component={NewTour}/>
+              <SecureRoute path="/tours/:id/" component={TourShow}/>
+              <SecureRoute path="/user/:id" component={UserShow}/>
             </Switch>
           </main>
           <Navbar />
