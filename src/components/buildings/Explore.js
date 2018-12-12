@@ -9,12 +9,17 @@ class Explore extends React.Component {
       query: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.filterBuildings = this.filterBuildings.bind(this);
   }
 
   handleInputChange() {
     this.setState({
       query: this.search.value
-    });
+    }, this.filterBuildings);
+
+  }
+
+  filterBuildings(){
     let filteredBuildings = this.state.filteredBuildings;
     const buildings = this.state.buildings;
     const query = this.state.query;
