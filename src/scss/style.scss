@@ -54,12 +54,12 @@ main {
   height: 55px;
 }
 
-.fa-home:before, .fa-search:before, .fa-user:before, .fa-sign-out:before, .fa-link:before {
+.fa-home:before, .fa-search:before, .fa-plus:before, .fa-user:before, .fa-sign-out:before, .fa-link:before {
   font-size: 24px;
 
 }
 
-.fa-home:after, .fa-search:after, .fa-user:after, .fa-sign-out:after, .fa-link:after {
+.fa-home:after, .fa-search:after, .fa-plus:after, .fa-user:after, .fa-sign-out:after, .fa-link:after {
   font-size: 34px;
 }
 
@@ -78,11 +78,11 @@ $fa-font-path: "~font-awesome/fonts";
 // Home
 .home-buttons {
   height: 5rem;
-  // .home-button-container input {
-  //   opacity: 0;
-  //   cursor: pointer;
-  //
-  // }
+  .home-button-container input {
+    // opacity: 0.5;
+    outline: none;
+
+  }
   .home-button-input {
     margin-right: 0.5rem;
 
