@@ -6,9 +6,12 @@ import { authorizationHeader } from '../../lib/auth';
 class NewBuilding extends React.Component {
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {
+      location: {}
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLatLngChange = this.handleLatLngChange.bind(this);
   }
 
   handleSubmit(event){
@@ -19,8 +22,12 @@ class NewBuilding extends React.Component {
       });
   }
 
+  handleLatLngChange({ target: { name, value }}){
+    this.setState({ location: { ...this.state.location, [name]: value }}, () => console.log('this is the state', this.state));
+  }
+
   handleChange({ target: { name, value }}){
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, () => console.log('this is the state', this.state));
   }
 
   render(){
@@ -31,7 +38,7 @@ class NewBuilding extends React.Component {
           <div className="field">
             <label className="label">Building Name</label>
             <div className="control">
-              <input onChange={this.handleChange} value={this.state.name || ''} name="name" className="input" type="text" placeholder="Name of the buidlings" />
+              <input onChange={this.handleChange} value={this.state.name || ''} name="name" className="input" type="text" placeholder="Name of the building" />
             </div>
           </div>
           <div className="field">
@@ -55,10 +62,10 @@ class NewBuilding extends React.Component {
           <div className="field">
             <label className="label">Location</label>
             <div className="control">
-              <input onChange={this.handleChange} value={this.state.lat || ''} name="lat" className="input" type="text" placeholder="Latitude of the building" />
+              <input onChange={this.handleLatLngChange} value={this.state.location.lat || ''} name="lat" className="input" type="text" placeholder="Latitude of the building" />
             </div>
             <div className="control">
-              <input onChange={this.handleChange} value={this.state.lng || ''} name="lng" className="input" type="text" placeholder="Longditude of the building" />
+              <input onChange={this.handleLatLngChange} value={this.state.location.lng || ''} name="lng" className="input" type="text" placeholder="Longditude of the building" />
             </div>
           </div>
 
