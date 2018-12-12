@@ -25,9 +25,10 @@ class NewBuilding extends React.Component {
   handleLatLngChange({ target: { name, value }}){
     this.setState({ location: { ...this.state.location, [name]: value }});
   }
-  
-  // handleChange({ target: { name, value }}){
-  // }
+
+  handleChange({ target: { name, value }}){
+    this.setState({ [name]: value });
+  }
 
   render(){
     return(

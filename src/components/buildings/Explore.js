@@ -9,18 +9,23 @@ class Explore extends React.Component {
       query: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.filterBuildings = this.filterBuildings.bind(this);
   }
 
   handleInputChange() {
     this.setState({
       query: this.search.value
-    });
+    }, this.filterBuildings);
+
+  }
+
+  filterBuildings(){
     let filteredBuildings = this.state.filteredBuildings;
     const buildings = this.state.buildings;
     const query = this.state.query;
     filteredBuildings = buildings.filter(building =>
-      building.name.toLowerCase().startsWith(query.toLowerCase()) ||
-      building.architect.toLowerCase().startsWith(query.toLowerCase())
+      building.name.toLowerCase().includes(query.toLowerCase()) ||
+      building.architect.toLowerCase().includes(query.toLowerCase())
     );
     this.setState({ filteredBuildings: filteredBuildings });
   }
