@@ -3,6 +3,12 @@
   font-size: 42px;
 }
 
+.is-vertical-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 img {
   object-fit: cover;
 }

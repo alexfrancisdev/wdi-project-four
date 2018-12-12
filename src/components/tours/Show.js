@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { tokenUserId, authorizationHeader } from '../../lib/auth';
 
 import BuildingBox from '../buildings/BuildingBox';
@@ -116,14 +117,19 @@ class Show extends React.Component {
                   <h1 className="is-size-5-mobile"> Comments</h1>
                   {tour.comments && tour.comments.map(
                     comment =>
-                      <div key={comment._id} className="columns is-mobile">
-                        <div className="column is-1">
-                          <figure className="image is-24x24">
-                            <img className="is-rounded" src={comment.user.image}/>
-                          </figure>
+                      <Link key={comment._id} to={`/user/${comment.user._id}`}>
+                        <div className="is-vertical-center columns is-mobile">
+                          <div className="is-vertical-center column is-2">
+                            <figure className="is-vertical-centerlevel-left image">
+                              <img className="is-rounded" src={comment.user.image}/>
+                            </figure>
+                          </div>
+                          <div className="column is-10">
+                            <p className="has-text-dark has-text-weight-bold is-size-7-mobile">{comment.user.username} </p>
+                            <p className="has-text-dark is-size-7-mobile"> {comment.content}</p>
+                          </div>
                         </div>
-                        <p className="column is-11 is-size-7-mobile">{comment.content}</p>
-                      </div>
+                      </Link>
                   )}
                 </div>
                 :
