@@ -6,6 +6,17 @@ a {
   color: #4A4A4A;
 }
 
+.is-no-margin {
+  margin: 0;
+}
+
+.is-low-padding {
+  padding-top: 0;
+}
+
+.search-input{
+  margin-top: 10px;
+}
 
 div[class^="ckbx-style-"] input[type=checkbox] {
   position: absolute;
@@ -271,12 +282,18 @@ form {
 
 .filteredBuilding-box {
   div {
+    border-radius: 5px;
     figure {
       img {
         border-radius: 5px;
       }
     }
   }
+}
+
+.filteredBuilding-box:hover {
+  background-color: rgb(224, 224, 224);
+  border-radius: 7px;
 }
 
 // user show
