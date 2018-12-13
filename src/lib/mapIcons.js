@@ -31,8 +31,8 @@ const blueMarker = new L.ExtraMarkers.Icon({
 });
 
 const userMarker = new L.Icon({
-  iconUrl: require('../assets/icons/user-icon.png'),
-  iconRetinaUrl: require('../assets/icons/user-icon.png'),
+  iconUrl: require('../assets/icons/orange_circle.png'),
+  iconRetinaUrl: require('../assets/icons/orange_circle.png'),
   fillOpacity: 0.5,
   iconAnchor: null,
   popupAnchor: [0, -5],
