@@ -121,43 +121,45 @@ class Home extends React.Component {
         <div className="home-buttons-container centered-container">
           <h2 className="is-size-5">Show buildings:</h2>
           <div className="columns is-mobile">
-            <div className="column is-3 ckbx-style-8 mine-switch">
-              <input type="checkbox" id="ckbx-style-8-1" value="1" name="ckbx-style-8" checked={this.state.myBuildingsStatus} onChange={this.handleMyButtonToggle}/>
-              <label htmlFor="ckbx-style-8-1"></label>
-              <h3 className="is-size-6-mobile">Mine</h3>
-            </div>
-            <div className="column is-3 ckbx-style-8 liked-switch">
-              <input type="checkbox" id="ckbx-style-8-2" value="1" name="ckbx-style-8" checked={this.state.likedBuildingsStatus} onChange={this.handleLikedButtonToggle}/>
-              <label htmlFor="ckbx-style-8-2"></label>
-              <h3 className="is-size-6-mobile">Liked</h3>
-            </div>
-            <div className="column is-3 ckbx-style-8 followed-switch">
-              <input type="checkbox" id="ckbx-style-8-3" value="1" name="ckbx-style-8" checked={this.state.followedBuildingsStatus} onChange={this.handleFollowedButtonToggle}/>
-              <label htmlFor="ckbx-style-8-3"></label>
-              <h3 className="is-size-6-mobile">Followed</h3>
-            </div>
-            <div className="column is-3 ckbx-style-8 all-switch">
-              <input type="checkbox" id="ckbx-style-8-4" value="1" name="ckbx-style-8" checked={this.state.allBuildingsStatus} onChange={this.handleAllButtonToggle}/>
-              <label htmlFor="ckbx-style-8-4"></label>
-              <h3 className="is-size-6-mobile">All</h3>
+            <div className="columns is-mobile map-controls">
+              <div className="column is-3 ckbx-style-8 mine-switch">
+                <input type="checkbox" id="ckbx-style-8-1" value="1" name="ckbx-style-8" checked={this.state.myBuildingsStatus} onChange={this.handleMyButtonToggle}/>
+                <label htmlFor="ckbx-style-8-1"></label>
+                <h3 className="is-size-6-mobile">Mine</h3>
+              </div>
+              <div className="column is-3 ckbx-style-8 liked-switch">
+                <input type="checkbox" id="ckbx-style-8-2" value="1" name="ckbx-style-8" checked={this.state.likedBuildingsStatus} onChange={this.handleLikedButtonToggle}/>
+                <label htmlFor="ckbx-style-8-2"></label>
+                <h3 className="is-size-6-mobile">Liked</h3>
+              </div>
+              <div className="column is-3 ckbx-style-8 followed-switch">
+                <input type="checkbox" id="ckbx-style-8-3" value="1" name="ckbx-style-8" checked={this.state.followedBuildingsStatus} onChange={this.handleFollowedButtonToggle}/>
+                <label htmlFor="ckbx-style-8-3"></label>
+                <h3 className="is-size-6-mobile">Followed</h3>
+              </div>
+              <div className="column is-3 ckbx-style-8 all-switch">
+                <input type="checkbox" id="ckbx-style-8-4" value="1" name="ckbx-style-8" checked={this.state.allBuildingsStatus} onChange={this.handleAllButtonToggle}/>
+                <label htmlFor="ckbx-style-8-4"></label>
+                <h3 className="is-size-6-mobile">All</h3>
+              </div>
             </div>
           </div>
 
-        </div>
-        <div className="box-container">
-          {!this.state.userPosition
-            ?
-            <p className="is-size-6-mobile centered-container">Loading map...</p>
-            :
-            <HomeMap
-              userPosition={this.state.userPosition}
-              buildings={this.state.allBuildings}
-              allBuildings={this.state.allBuildings}
-              myBuildings={this.state.myBuildings}
-              likedBuildings={this.state.likedBuildings}
-              followedBuildings={this.state.followedBuildings}
-            />
-          }
+          <div className="box-container">
+            {!this.state.userPosition
+              ?
+              <p className="is-size-6-mobile centered-container">Loading map...</p>
+              :
+              <HomeMap
+                userPosition={this.state.userPosition}
+                buildings={this.state.allBuildings}
+                allBuildings={this.state.allBuildings}
+                myBuildings={this.state.myBuildings}
+                likedBuildings={this.state.likedBuildings}
+                followedBuildings={this.state.followedBuildings}
+              />
+            }
+          </div>
         </div>
       </section>
     );

@@ -110,8 +110,7 @@ class Show extends React.Component {
                 <div className="has-text-centered">
                   <p className="column is-11 is-size-6-mobile">There are no comments on this building.</p>
                 </div>}
-              <hr/>
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={this.handleSubmit} className="comment-input">
                 <input className="input" onChange={this.handleChange} value={this.state.content || ''} name="content" placeholder="Add a comment..."/>
               </form>
             </div>
@@ -120,7 +119,7 @@ class Show extends React.Component {
               {building.featuredOn.length >= 1
                 ?
                 <div>
-                  <h1 className="is-size-5-mobile">Featured on</h1>
+                  <h1 className="is-size-5-mobile">Featured on:</h1>
                   {building.featuredOn && building.featuredOn.map(
                     tour =>
                       <div key={tour._id}>

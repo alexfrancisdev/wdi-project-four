@@ -1,12 +1,15 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import { authorizationHeader } from '../../lib/auth';
 
 class NewTour extends React.Component {
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {
+      filteredBuildings: []
+    };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -115,7 +118,10 @@ class NewTour extends React.Component {
             <div>
               {this.state.selectedBuildings && this.state.selectedBuildings.map(
                 selectedBuilding =>
-                  <p onClick={this.removeBuilding} className="has-text-weight-light is-size-6" id={selectedBuilding._id} key={selectedBuilding._id}>{selectedBuilding.name}</p>
+                  <li id={selectedBuilding._id} key={selectedBuilding._id} onClick={this.removeBuilding} className="columns is-mobile">
+                    <p className="is-low-padding column is-gapless is-10-mobile has-text-weight-light is-size-6" >{selectedBuilding.name}</p>
+                    <p className="is-low-padding column is-gapless is-2-mobile has-text-weight-light is-size-6">x</p>
+                  </li>
               )}
             </div>
             <div>
@@ -125,28 +131,39 @@ class NewTour extends React.Component {
               placeholder="Search..."
               ref={input => this.search = input}
               onChange={this.handleInputChange}
-              className="input"
+              className="input search-input"
             />
             <div className="centered-container">
 
               <div>
-                {this.state.filteredBuildings && this.state.filteredBuildings.map(
-                  filteredBuilding =>
-                    <div onClick={this.addBuilding} key={filteredBuilding._id} id={filteredBuilding._id} className="filteredBuilding-box columns is-mobile">
-                      <div className="column is-one-quarter">
-                        <figure className="image is-1by1">
-                          <img src={filteredBuilding.icon}/>
-                        </figure>
-                      </div>
-                      <div className="column is-three-quarters">
-                        <p className="is-size-6-mobile">{filteredBuilding.name}</p>
-                        <p className="is-size-6-mobile">{filteredBuilding.architect}</p>
-                      </div>
-                    </div>
-                )}
+                {!this.state.filteredBuildings.length > 0
+                  ?
+                  <div className="columns is-multiline is-mobile">
+                    <p className="column is-size-5 is-12 has-text-centered">{'Can\'t find what you\'re looking for?'}</p>
+                    <Link className="column is-12 has-text-centered" to='/explore/new'><p className="is-size-6 has-text-centered">{'Upload a new building'}</p></Link>
+                  </div>
+                  :
+                  <div>
+                    {this.state.filteredBuildings && this.state.filteredBuildings.map(
+                      filteredBuilding =>
+                        <div onClick={this.addBuilding} key={filteredBuilding._id} id={filteredBuilding._id} className="filteredBuilding-box columns is-mobile">
+                          <div className="column is-one-quarter">
+                            <figure className="image is-1by1">
+                              <img src={filteredBuilding.icon}/>
+                            </figure>
+                          </div>
+                          <div className="column is-three-quarters">
+                            <p className="is-size-6-mobile">{filteredBuilding.name}</p>
+                            <p className="is-size-7-mobile">{filteredBuilding.architect}</p>
+                          </div>
+                        </div>
+                    )}
+                  </div>
+                }
               </div>
             </div>
           </div>
+          <hr/>
           <div className="field is-grouped">
             <div className="control">
               <button className="button is-link">Submit</button>

@@ -2,6 +2,52 @@ $box-color: #fffeff;
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome.scss";
 
+.navbar{
+  img {
+    max-height: 3rem;
+    margin: 7px;
+    margin-bottom: 0;
+  }
+  border-bottom: 1px solid rgba(0,0,0,.0975);
+  border-top: 1px solid rgba(0,0,0,.0975);
+  height: 8vh;
+}
+
+.navbar-item{
+  padding: 0;
+}
+
+
+.is-no-margin {
+  margin: 0;
+}
+
+.is-low-padding {
+  padding-top: 0;
+}
+
+.search-input{
+  margin-top: 10px;
+}
+
+a:hover {
+  color: #8C8C8C;
+}
+
+
+
+.map-controls {
+  display: flex;
+  align-items: center;
+  height: auto;
+  margin-top: 1px;
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
 
 // COMMON
 * {
@@ -45,6 +91,7 @@ img {
 .container {
   height: 100%;
   main {
+    padding-top: 1rem;
     height: 84vh;
     overflow: scroll;
   }
@@ -251,10 +298,21 @@ div[class^="ckbx-style-"] input[type=checkbox] {
 
 .filteredBuilding-box {
   div {
+    border-radius: 5px;
     figure {
       img {
         border-radius: 5px;
       }
     }
   }
+}
+
+.filteredBuilding-box:hover {
+  background-color: rgb(224, 224, 224);
+  border-radius: 7px;
+}
+
+// BUILDING SHOW
+.comment-input {
+  margin-top: 1rem;
 }

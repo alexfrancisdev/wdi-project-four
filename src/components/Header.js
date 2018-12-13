@@ -6,9 +6,13 @@ class Header extends React.Component {
   }
   render() {
     return (
-      <div className="header">
-        <h1 className="logo is-size-3-mobile is-size-1-desktop">Placeholder</h1>
-      </div>
+      <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className="navbar-start">
+          <a className="navbar-item">
+            <img src="../assets/logo.png"/>
+          </a>
+        </div>
+      </nav>
     );
   }
 }

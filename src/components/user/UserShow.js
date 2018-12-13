@@ -40,11 +40,15 @@ class UserShow extends React.Component {
   }
 
   handleDelete(event){
-    // event.preventDefault();
+    const clicked = event.currentTarget.id;
     console.log(this.state.user.buildingsAdded);
     console.log(event.target.value);
-    // axios.delete('/api/buildings/', this.state, authorizationHeader());
-    // console.log(this.state.user.buildingsAdded);
+    this.state.user.buildingsAdded.map(function(object) {
+      // if(this.state.user.buildingsAdded.includes(clicked)) {
+      //   console.log('got it!');
+      // }
+      console.log('clicked', clicked, 'object', object);
+    });
   }
 
   render() {
