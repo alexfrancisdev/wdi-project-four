@@ -119,7 +119,7 @@ class Home extends React.Component {
     return (
       <section className="map-container">
         <div className="home-buttons-container">
-          <h2 className="is-size-5">Show buildings:</h2>
+          <h2 className="is-size-5 centered-container">Show buildings:</h2>
           <div className="columns is-mobile centered-container">
             <div className="columns is-mobile map-controls">
               <div className="column is-3-mobile ckbx-style-8 mine-switch">
