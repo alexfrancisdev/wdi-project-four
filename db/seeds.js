@@ -344,6 +344,28 @@ mongoose.connect(dbUri, (err, db) => {
       lat: 42.715251,
       lng: -87.790644
     }
+  }, {
+    _id: buildingIds[21],
+    name: 'The National Theatre, London',
+    architect: 'Denys Lasdun',
+    addedBy: userIds[4],
+    likes: [userIds[5]],
+    icon: 'http://www.uncubemagazine.com/sixcms/media.php/1323/National%20Theatre%20from%20the%20northeast%20Photo%20by%20Philip%20Vile%20copy.jpg',
+    location: {
+      lat: 51.506967,
+      lng: -0.114102
+    }
+  }, {
+    _id: buildingIds[22],
+    name: 'Lloyd\'s Building',
+    architect: 'Richard Rogers and Partners',
+    addedBy: userIds[4],
+    likes: [userIds[5]],
+    icon: 'https://i.pinimg.com/originals/0a/15/0f/0a150f7b8bdb25fda56a4e82929db761.jpg',
+    location: {
+      lat: 51.512697,
+      lng: -0.082243
+    }
   }])
     .then(buildings => {
       console.log(`${buildings.length} buildings created`);
