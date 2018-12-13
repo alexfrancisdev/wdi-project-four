@@ -99,8 +99,8 @@ class Show extends React.Component {
                             </figure>
                           </div>
                           <div className="column is-10">
-                            <p className="has-text-dark has-text-weight-bold is-size-7-mobile">{comment.user.username} </p>
-                            <p className="has-text-dark is-size-7-mobile"> {comment.content}</p>
+                            <p className="has-text-dark has-text-weight-bold is-size-6-mobile">{comment.user.username} </p>
+                            <p className="has-text-dark is-size-6-mobile"> {comment.content}</p>
                           </div>
                         </div>
                       </Link>
@@ -124,13 +124,13 @@ class Show extends React.Component {
                   {building.featuredOn && building.featuredOn.map(
                     tour =>
                       <div key={tour._id}>
-                        <Link id={tour._id} to={`/tours/${tour._id}`} className="is-size-7-mobile"><strong>{tour.name}</strong>: {tour.description}</Link>
+                        <Link id={tour._id} to={`/tours/${tour._id}`} className="is-size-6-mobile"><p><strong>{tour.name}</strong>: {tour.description}</p><br/></Link>
                       </div>
                   )}
                 </div>
                 :
                 <div className="has-text-centered">
-                  <p className="column is-11 is-size-7-mobile">This building is not featured on any tours.</p>
+                  <p className="column is-11 is-size-6-mobile">This building is not featured on any tours.</p>
                 </div>}
             </div>
           </div>

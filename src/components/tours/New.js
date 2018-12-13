@@ -140,7 +140,7 @@ class NewTour extends React.Component {
                       </div>
                       <div className="column is-three-quarters">
                         <p className="is-size-6-mobile">{filteredBuilding.name}</p>
-                        <p className="is-size-7-mobile">{filteredBuilding.architect}</p>
+                        <p className="is-size-6-mobile">{filteredBuilding.architect}</p>
                       </div>
                     </div>
                 )}

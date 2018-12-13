@@ -125,8 +125,8 @@ class Show extends React.Component {
                             </figure>
                           </div>
                           <div className="column is-10">
-                            <p className="has-text-dark has-text-weight-bold is-size-7-mobile">{comment.user.username} </p>
-                            <p className="has-text-dark is-size-7-mobile"> {comment.content}</p>
+                            <p className="has-text-dark has-text-weight-bold is-size-6-mobile">{comment.user.username} </p>
+                            <p className="has-text-dark is-size-6-mobile"> {comment.content}</p>
                           </div>
                         </div>
                       </Link>
@@ -134,7 +134,7 @@ class Show extends React.Component {
                 </div>
                 :
                 <div className="has-text-centered">
-                  <p className="column is-11 is-size-7-mobile">There are no comments on this tour.</p>
+                  <p className="column is-11 is-size-6-mobile">There are no comments on this tour.</p>
                 </div>}
               <hr/>
               <form onSubmit={this.handleSubmit}>
@@ -147,7 +147,7 @@ class Show extends React.Component {
             </div>
           </div>
           :
-          <p>Please wait...</p>}
+          <p className="is-size-6-mobile centered-container">Please wait...</p>}
       </div>
     );
   }

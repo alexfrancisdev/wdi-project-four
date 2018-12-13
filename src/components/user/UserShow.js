@@ -10,6 +10,7 @@ class UserShow extends React.Component {
     this.handleFollow = this.handleFollow.bind(this);
     this.handleUnfollow = this.handleUnfollow.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -36,6 +37,14 @@ class UserShow extends React.Component {
   handleLogout() {
     deleteToken();
     this.props.history.push('/landing');
+  }
+
+  handleDelete(event){
+    // event.preventDefault();
+    console.log(this.state.user.buildingsAdded);
+    console.log(event.target.value);
+    // axios.delete('/api/buildings/', this.state, authorizationHeader());
+    // console.log(this.state.user.buildingsAdded);
   }
 
   render() {
@@ -83,7 +92,7 @@ class UserShow extends React.Component {
                 <div>
                   <h1 className="user-subtitle is-size-5-mobile">Your Details</h1>
                   <div className="box">
-                    <h1 className="subtitle is-size-7-mobile">Email Address: {user.email}</h1>
+                    <h1 className="subtitle is-size-6-mobile">Email Address: {user.email}</h1>
                   </div>
                 </div>
                 :
@@ -97,19 +106,30 @@ class UserShow extends React.Component {
                 <h1 className="user-subtitle is-size-5-mobile">Pins</h1>}
 
               {user && user.buildingsAdded.map(
-                building => <Link to={`/explore/${building._id}`} key={building._id}>
-                  <div className="filteredBuilding-box columns is-mobile">
-                    <div className="column is-one-quarter">
-                      <figure className="image is-1by1">
-                        <img src={building.icon}/>
-                      </figure>
-                    </div>
-                    <div className="column is-three-quarters">
-                      <p className="is-size-6-mobile">{building.name}</p>
-                      <p className="is-size-7-mobile">{building.architect}</p>
+                building =>
+                  <div  key={building._id}>
+                    <div className="filteredBuilding-box columns is-mobile">
+                      <div className="column is-3">
+                        <figure className="image is-1by1">
+                          <Link to={`/explore/${building._id}`}><img src={building.icon}/></Link>
+                        </figure>
+                      </div>
+
+                      <div className="column is-7">
+                        <p className="is-size-6-mobile">{building.name}</p>
+                        <p className="is-size-6-mobile is-italic">{building.architect}</p>
+                      </div>
+
+                      {currentUserId === user._id
+                        ?
+                        <div className="column is-2" onClick={this.handleDelete}>
+                          <i className="far fa-times-circle"></i>
+                        </div>
+                        :
+                        <p></p>}
                     </div>
                   </div>
-                </Link>
+
               )}
             </div>
 
