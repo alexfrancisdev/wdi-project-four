@@ -41,14 +41,12 @@ class UserShow extends React.Component {
 
   handleDelete(event){
     const clicked = event.currentTarget.id;
-    console.log(this.state.user.buildingsAdded);
-    console.log(event.target.value);
-    this.state.user.buildingsAdded.map(function(object) {
-      // if(this.state.user.buildingsAdded.includes(clicked)) {
-      //   console.log('got it!');
-      // }
-      console.log('clicked', clicked, 'object', object);
+    const buildingsAdded = this.state.user.buildingsAdded.filter(building => {
+      return building._id !== clicked;
     });
+    const updatedUser = { ...this.state.user, buildingsAdded };
+    axios.delete(`/api/buildings/${clicked}`, authorizationHeader())
+      .then(() => this.setState({ user: updatedUser }));
   }
 
   render() {
@@ -111,7 +109,7 @@ class UserShow extends React.Component {
 
               {user && user.buildingsAdded.map(
                 building =>
-                  <div  key={building._id}>
+                  <div  key={building._id} >
                     <div className="filteredBuilding-box columns is-mobile">
                       <div className="column is-3">
                         <figure className="image is-1by1">
@@ -126,7 +124,7 @@ class UserShow extends React.Component {
 
                       {currentUserId === user._id
                         ?
-                        <div className="column is-2" onClick={this.handleDelete}>
+                        <div className="column is-2" onClick={this.handleDelete} id={building._id}>
                           <i className="far fa-times-circle"></i>
                         </div>
                         :
